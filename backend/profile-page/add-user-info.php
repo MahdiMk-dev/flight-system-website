@@ -19,6 +19,8 @@ if (isset($dob) && isset($nationality) && isset($passport_number) && isset($phon
     } else {
         $response['status'] = "failed to add user info";
     }
+} else {
+    $response['status'] = "missing required info!";
 }
 
 echo json_encode($response);
