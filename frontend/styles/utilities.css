@@ -1,0 +1,36 @@
+.flex {
+display: flex;
+}
+  
+.row {
+flex-direction: row;
+}
+
+.column {
+flex-direction: column;
+}
+
+.center {
+justify-content: center;
+align-items: center;
+}
+
+.full-width {
+width: 100%;
+}
+
+.full-height {
+height: 100%;
+}
+
+.half-width {
+width: 50%;
+}
+
+.half-height {
+height: 50%;
+}
+
+.bold {
+font-weight: bold;
+}
