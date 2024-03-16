@@ -8,7 +8,7 @@
         $token=bin2hex(random_bytes(16)); // 16 bytes = 128 bits
         return $token;
     }
-    $query = $mysqli->prepare('select id,email,password,username
+    $query = $mysqli->prepare('select id,email,password
     from users
     where email=?');
     $query->bind_param('s', $email);
@@ -21,7 +21,6 @@
     if ($num_rows == 0) {
         $response['status'] = "user not found";
     } else {
-
         if (password_verify($password, $hashed_password)) {
             $token=generateToken();
             $response['status'] = "logged_in";
