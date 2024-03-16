@@ -16,7 +16,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['usernam
 
     if ($email_exists == 0) {
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-        $query = $mysqli->prepare('INSERT INTO users (username, password, email) VALUES (?, ?, ?)');
+        $query = $mysqli->prepare('INSERT INTO users (username, password , email) VALUES (?, ?, ?)');
         $query->bind_param('sss', $username, $hashed_password, $email);
         $query->execute();
         $created_id = $mysqli->insert_id;
