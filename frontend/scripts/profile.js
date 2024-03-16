@@ -6,10 +6,10 @@ const nationalitySpan = document.getElementById('nationality');
 const passportSpan = document.getElementById('passport');
 const phoneSpan = document.getElementById('phone');
 
-const nameEC = document.getElementById('name-EC');
-const emailEC = document.getElementById('email-EC');
-const phoneEC = document.getElementById('phone-EC');
-const relationEC = document.getElementById('relation-EC');
+const nameECSpan= document.getElementById('name-EC');
+const emailECSpan = document.getElementById('email-EC');
+const phoneECSpan = document.getElementById('phone-EC');
+const relationECSpan = document.getElementById('relation-EC');
 
 const bookingID1 = document.getElementById('booking-ID');
 const bookingDate1 = document.getElementById('booking-Date');
@@ -58,3 +58,22 @@ editPassBtn.addEventListener("click", ()=> {
 })
 
 
+const editECDetails= () => {
+
+    const nameEC = nameECSpan.textContent;
+    const emailEC = emailECSpan.textContent;
+    const phoneEC = phoneECSpan.textContent;
+    const relationEC = relationECSpan.textContent;
+
+
+    nameECSpan.innerHTML = `<input type="text" id="editECName" value="${nameEC}">`;
+    emailECSpan.innerHTML = `<input type="email" id="editECEmail" value="${emailEC}">`;
+    phoneECSpan.innerHTML = `<input type="tel" id="editECPhone" value="${phoneEC}">`;
+    relationECSpan.innerHTML = `<input type="text" id="editrelationEC" value="${relationEC}">`;
+
+}
+
+editECBtn.addEventListener("click", ()=> {
+    editECDetails()
+    editECBtn.textContent = 'Save';
+})
