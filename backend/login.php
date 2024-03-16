@@ -4,6 +4,10 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    function generateToken() {
+        $token=bin2hex(random_bytes(16)); // 16 bytes = 128 bits
+        return $token;
+    }
     $query = $mysqli->prepare('select id,email,password,username
     from users
     where email=?');
@@ -19,9 +23,12 @@
     } else {
 
         if (password_verify($password, $hashed_password)) {
+            $token=generateToken();
             $response['status'] = "logged_in";
             $response['user_id'] = $id;
             $response['email'] = $email;
+            $response['token'] = $token;
+
         } else {
             $response['status'] = "incorrect credentials";
         }
