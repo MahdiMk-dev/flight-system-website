@@ -11,14 +11,14 @@ const emailECSpan = document.getElementById('email-EC');
 const phoneECSpan = document.getElementById('phone-EC');
 const relationECSpan = document.getElementById('relation-EC');
 
-const bookingID1 = document.getElementById('booking-ID');
-const bookingDate1 = document.getElementById('booking-Date');
-const bookingStatus1 = document.getElementById('booking-Status');
+const bookingID = document.getElementById('booking-ID');
+const bookingDate = document.getElementById('booking-Date');
+const bookingStatus = document.getElementById('booking-Status');
 
 const flightID = document.getElementById('flight-ID');
 const flightStatus = document.getElementById('flight-Status');
 
-const editPassBtn = document.getElementById('edit-P-btn');
+const editUserBtn = document.getElementById('edit-User-btn');
 const editECBtn = document.getElementById('edit-EC-btn');
 const cancelButton = document.getElementById('cancel-btn');
 ////////////////////////////////////////////////////////////////////////
@@ -52,10 +52,40 @@ const editUserDetails= () => {
 
 }
 
-editPassBtn.addEventListener("click", ()=> {
+editUserBtn.addEventListener("click", ()=> {
     editUserDetails()
-    editPassBtn.textContent = 'Save';
+    editUserBtn.textContent = 'Save';
+    editUserBtn.onclick = saveUserDetails;
 })
+
+
+
+function saveUserDetails() {
+
+    const newName = document.getElementById('editName').value;
+    const newEmail = document.getElementById('editEmail').value;
+    const newPassword = document.getElementById('editPassword').value;
+    const newDob = document.getElementById('editDob').value;
+    const newNationality = document.getElementById('editNationality').value;
+    const newPassport = document.getElementById('editPassport').value;
+    const newPhone = document.getElementById('editPhone').value;
+    
+    
+    document.getElementById('name').textContent = newName;
+    document.getElementById('email').textContent = newEmail;
+    document.getElementById('password').textContent = newPassword;
+    document.getElementById('dob').textContent = newDob;
+    document.getElementById('nationality').textContent = newNationality;
+    document.getElementById('passport').textContent = newPassport;
+    document.getElementById('phone').textContent = newPhone;
+    
+
+    editECBtn.addEventListener("click", ()=> {
+        editECDetails()
+        editECBtn.textContent = 'Edit';
+    })
+
+}
 
 
 const editECDetails= () => {
@@ -65,15 +95,34 @@ const editECDetails= () => {
     const phoneEC = phoneECSpan.textContent;
     const relationEC = relationECSpan.textContent;
 
-
     nameECSpan.innerHTML = `<input type="text" id="editECName" value="${nameEC}">`;
     emailECSpan.innerHTML = `<input type="email" id="editECEmail" value="${emailEC}">`;
     phoneECSpan.innerHTML = `<input type="tel" id="editECPhone" value="${phoneEC}">`;
-    relationECSpan.innerHTML = `<input type="text" id="editrelationEC" value="${relationEC}">`;
+    relationECSpan.innerHTML = `<input type="text" id="editECRelation" value="${relationEC}">`;
 
 }
 
 editECBtn.addEventListener("click", ()=> {
     editECDetails()
     editECBtn.textContent = 'Save';
+    editECBtn.onclick = saveECDetails;
 })
+
+function saveECDetails() {
+
+    const newECName = document.getElementById('editECName').value;
+    const newECEmail = document.getElementById('editECEmail').value;
+    const newECPhone = document.getElementById('editECPhone').value;
+    const newECRelation = document.getElementById('editECRelation').value;
+
+    
+    document.getElementById('name-EC').textContent = newECName;
+    document.getElementById('email-EC').textContent = newECEmail;
+    document.getElementById('phone-EC').textContent = newECPhone;
+    document.getElementById('relation-EC').textContent = newECRelation;
+
+    editECBtn.addEventListener("click", ()=> {
+        editECDetails()
+        editECBtn.textContent = 'Edit';
+    })
+}
