@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 15, 2024 at 11:39 PM
+-- Generation Time: Mar 17, 2024 at 10:56 PM
 -- Server version: 8.2.0
 -- PHP Version: 8.2.13
 
@@ -114,7 +114,14 @@ CREATE TABLE IF NOT EXISTS `flights` (
   `arrival_time` time NOT NULL,
   `airplane_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `flights`
+--
+
+INSERT INTO `flights` (`id`, `price`, `departure_airport_id`, `arrival_airport_id`, `departure_date`, `departure_time`, `arrival_date`, `arrival_time`, `airplane_id`) VALUES
+(1, 1000, 1, 2, '0000-00-00', '01:00:00', '0000-00-00', '15:00:00', 2);
 
 -- --------------------------------------------------------
 
@@ -147,8 +154,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `nationality` varchar(255) NOT NULL,
   `passport_number` int NOT NULL,
   `phone_number` int NOT NULL,
+  `coins` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `dob`, `nationality`, `passport_number`, `phone_number`, `coins`) VALUES
+(1, 'test12', 'test@gmail.com', '$2y$10$TOsMor7coAAKVbgKiEwgJ.42HQVfEhsKkrkU8XPx.Yfg66d9lfs0W', '0000-00-00', '', 0, 0, 0),
+(2, 'mahdi', 'mokaledmahdi@gmail.com', '$2y$10$G565Tz/gvek0cfkcaSB8Y.KTGeB3TzbWVUbRulmLSCCXYsNHzlCge', '0000-00-00', '', 0, 0, 0),
+(3, 'mahdi', 'mahdi@gmail.com', '$2y$10$AxqucklYuyTrrmRWRS1DV.Bo2o8Srvy5rzC9XGMcnreWV8ExbbGeG', '0000-00-00', '', 0, 0, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
