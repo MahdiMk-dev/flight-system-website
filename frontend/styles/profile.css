@@ -1,0 +1,44 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: 0;
+    font-family: sans-serif;
+}
+
+header{
+    margin-bottom: 40px;
+}
+
+main p {
+    padding: 10px;
+}
+
+div {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    /* width: max-content; */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* .border{
+    border-left: 15px solid #007bff;
+    border-radius: 10px;
+}
+
+.border:hover{
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+} */
