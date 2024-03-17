@@ -6,9 +6,64 @@
     font-family: sans-serif;
 }
 
-header{
-    margin-bottom: 40px;
+.header-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
 }
+
+nav {
+    background-color: #4481eb;
+    color: #fff;
+    padding: 10px 0;
+}
+
+nav .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin: 0;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.hero {
+    background-image: url('../images/hero2.jpg');
+    background-size: cover;
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 3em;
+}
+
+.hero p {
+    font-size: 1.2em;
+    color: white ;
+}
+
 
 main p {
     padding: 10px;
