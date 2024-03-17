@@ -21,17 +21,23 @@ btnSignup.addEventListener("click", (e) => {
           ECphone: '',
           ECrelation: ''
         },
-        bookings: {
-          booking1: { bookingID: '', date: '', status: '' },
-          booking2: { bookingID: '', date: '', status: '' },
-          booking3: { bookingID: '', date: '', status: '' },
-          booking4: { bookingID: '', date: '', status: '' }
-        },
-        flights: {
-          flight1: { flightID: '', status: '' },
-          flight2: { flightID: '', status: '' },
-          flight3: { flightID: '', status: '' },
-          flight4: { flightID: '', status: '' }
+        upcomingBookings: [
+          {
+              bookingID: '1',
+              date: '2001/23/3',
+              status: 'canceled'
+          },
+          {
+              bookingID: '2',
+              date: '2002/24/4',
+              status: 'confirmed'
+          },
+          // Add more bookings as needed
+      ],
+        bookingsHistory: {
+          bookingID: '', 
+          date: '', 
+          status: ''
         }
     };
     
