@@ -299,5 +299,5 @@ if (userIsSignedIn) {
 
 } else {
     // Redirect to the login page if user is not signed in
-    window.location.href = '../pages/login.html';
+    //window.location.href = '../pages/login.html';
 }
