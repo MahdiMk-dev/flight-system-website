@@ -1,28 +1,39 @@
-function checkCredentials(inputUsername, password) {
-    const users = getUsers();
+document.addEventListener('DOMContentLoaded', function() {
+    function submitLoginForm() {
+        
+        let email = document.getElementById('signinEmail').value;
+        let password = document.getElementById('signinPassword').value;
 
-    for (let i = 0; i < users.length; i++) {
-        const user = users[i];
-        if (user.passengerdetails.username === inputUsername && user.passengerdetails.password === password) {
-            return { id: user.id, isAdmin: user.isAdmin };
-        }
+        // Prepare data to be sent in the request body
+        var formData = new FormData();
+        formData.append('email', email);
+        formData.append('password', password);
+
+        fetch('http://localhost/flight-system-website/backend/login.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json()) 
+        .then(data => {
+            console.log(data);
+            // Handle the response
+            if (data.status === 'logged_in') {
+                alert('Logged in successfully');
+                //redirect to landing page when implemented 
+                window.location.href = './main.html?user_id=' + data.user_id;
+            } else {
+                alert(data.status);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred, please try again later.');
+        });
     }
 
-    return null;
-}
-
-const inputUsername = document.getElementById("input-username");
-const inputPassword = document.getElementById("input-password");
-
-const btnLogin = document.getElementById("btn-login");
-
-btnLogin.addEventListener("click", (e) => {
-    const user = checkCredentials(inputUsername.value, inputPassword.value);
-    if (user) {
-        localStorage.setItem('signedIn', 'true');
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        window.location.href = "../pages/profile.html"
-    } else {
-        alert("Invalid username or password.");
-    }
+    // Attach form submission function to login button click event
+    document.getElementById('loginBtn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        submitLoginForm(); // Call the function to submit the form
+    });
 });
