@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Handle the response
             if (data.status === 'logged_in') {
                 alert('Logged in successfully');
+                localStorage.setItem('jwtToken', data.token);
+
                 //redirect to landing page when implemented 
                 window.location.href = './profile.html?user_id=' + data.user_id;
             } else {
