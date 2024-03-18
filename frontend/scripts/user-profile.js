@@ -13,6 +13,7 @@ const cancelButton = document.getElementById('cancel-btn');
 
 const user_container = document.getElementById('passengerDetails');
 const ec_container = document.getElementById('emergencyContactDetails');
+const upcoming_container = document.getElementById('upcoming-bookings');
 
 
 
@@ -41,7 +42,7 @@ const fetchUserDetails = async (user_id) => {
 const loadUserInfoContent = async (user_id) => {
     try {
         const user = await fetchUserDetails(user_id);
-        console.log('User:', user);
+        //console.log('User:', user);
         if (user && user.status === 'success' && user.user) {
             const passengerDetails = user.user;
             user_container.innerHTML = `
@@ -70,7 +71,7 @@ const fetchECInfoContent = (user_id) => {
         return response.json();
     })
     .then((data) => {
-        console.log(data);
+        //console.log(data);
         loadECInfoContent(data);
     })
     .catch((error) => {
@@ -80,7 +81,7 @@ const fetchECInfoContent = (user_id) => {
 
 const loadECInfoContent = (data) => {
     const {name, email, phone_number, relation} = data.contact;
-    console.log(data.contact);
+    //console.log(data);
     if (data) {
         ec_container.innerHTML =
         `<h2>Emergency Contact Details</h2>
@@ -91,5 +92,76 @@ const loadECInfoContent = (data) => {
     }
 }
 
+/*const fetchUpcomingBookings = (user_id) => {
+    fetch(`http://localhost/flight-system-website/backend/profile-page/view-reservations.php?user_id=${user_id}`, {
+    method: "GET",
+    })
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        //console.log(data);
+        loadUpcomingBookings(data);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+};*/
+
+const fetchUpcomingBookings = async (user_id) => {
+    try {
+        const response = await fetch(`http://localhost/flight-system-website/backend/profile-page/view-reservations.php?user_id=${user_id}`, {
+            method: "GET",
+        });
+        const data = await response.json();
+        //console.log(data);
+        loadUpcomingBookings(data);
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+const loadUpcomingBookings = (data) => {
+    const {flights} = data;
+    upcoming_container.innerHTML = `<h2>Upcoming Bookings</h2>`;
+    if(!flights) {
+        return;
+    }
+    flights.forEach((flight,index) => {
+        const {booking_id, date} = flight;
+        const bookingContainer = document.createElement('div');
+        bookingContainer.classList.add('flex', 'row', 'space-between');
+
+        bookingContainer.innerHTML = `
+            <p>ID: <span>${booking_id}</span></p>
+            <p>Date: <span>${date}</span></p>
+            <p>Status: <span>Upcoming</span></p>
+            <button class="cancel-btn">Cancel</button>
+        `;
+
+        const cancelButton = bookingContainer.querySelector('.cancel-btn');
+        cancelButton.addEventListener('click', async () => {
+            const formData = new FormData();
+            formData.append('user_id', user_id);
+            formData.append('booking_id', booking_id);
+            try {
+                const response = await fetch('http://localhost/flight-system-website/backend/profile-page/cancel-reservation.php', {
+                method: "POST",
+                body: formData
+            });
+            const responseData = await response.json();
+            console.log(responseData);
+            await fetchUpcomingBookings(user_id);
+            }
+            catch(error) {
+                console.error(error);
+            }
+        });
+
+        upcoming_container.appendChild(bookingContainer);
+    });
+}
+
 loadUserInfoContent(user_id);
 fetchECInfoContent(user_id);
+fetchUpcomingBookings(user_id);
