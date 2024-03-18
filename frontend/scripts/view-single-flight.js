@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var flight_id = params['flight_id'];
     const jwtToken = localStorage.getItem('jwtToken');
     console.log(flight_id)
-    console.log("test")
     // Fetch flights data using the user ID
     fetch('http://localhost/flight-system-website/backend/single-flight-page.php?flight_id='+flight_id,{
         headers: {
@@ -56,12 +55,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     .then(response => response.json())
                     .then(data => {
                         if (data.status === 'success') {
-                            alert('Flight booked successfully! Check your booked flight details in your localStorage.');
+                            alert('Flight booked successfully! Check your booked flight details in your profile page.');
                    
                         }
                         else 
                             alert(data.status)
                     })
+                    }
+                    else{
+                        alert("Seat out of capacity, Please check given range.")
                     }
                 });
             } else {

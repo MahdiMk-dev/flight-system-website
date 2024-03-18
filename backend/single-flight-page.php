@@ -26,6 +26,7 @@ if (!isset($_GET['flight_id'])) {
 
 $flight_id = $_GET['flight_id'];
 
+
 $query = $mysqli->prepare('SELECT flights.id as id,
     flights.price as price,
     depart_airport.name as departure_airport_id,

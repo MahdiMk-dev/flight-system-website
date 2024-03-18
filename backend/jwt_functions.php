@@ -8,7 +8,7 @@
     function generateToken($user_id) {
     $secretKey  = secretKey;
     $issuedAt   = new DateTimeImmutable();
-    $expire     = $issuedAt->modify('+6 minutes')->getTimestamp();      // Add 60 seconds
+    $expire     = $issuedAt->modify('+120 minutes')->getTimestamp();      // Add 60 seconds
     $serverName = "http://localhost/flight-system-website/";
     $username   = $user_id;                                           // Retrieved from filtered POST data
 
