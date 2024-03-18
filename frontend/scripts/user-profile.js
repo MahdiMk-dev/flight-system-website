@@ -127,7 +127,7 @@ const loadUserInfoContent = async (user_id) => {
 
 const fetchECInfoContent = (user_id) => {
     fetch(`http://localhost/flight-system-website/backend/profile-page/view-emergency-contacts.php?user_id=${user_id}`, {
-    method: "GET",
+        method: "GET",
     })
     .then((response) => {
         return response.json();
@@ -138,8 +138,9 @@ const fetchECInfoContent = (user_id) => {
     })
     .catch((error) => {
         console.error(error);
-    }
-};
+    });
+}
+
 
 const loadECInfoContent = (data) => {
     const {name, email, phone_number, relation} = data.contact;
