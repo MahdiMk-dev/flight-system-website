@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('username', username);
         formData.append('email', email);
         formData.append('password', password);
-
+        
      
         fetch('http://localhost/flight-system-website/backend/signup.php', {
             method: 'POST',
-            body: formData
+            body: formData,
         })
         .then(response => response.json()) 
         .then(data => {
