@@ -43,7 +43,7 @@ $num_rows = $query->num_rows;
 if ($num_rows != 0) {
     $response['status'] = 'Seat not Available';
 } else {
-    $query2 = $mysqli->prepare('SELECT coins from users  WHERE id = ? ');
+    $query2 = $mysqli->prepare('SELECT coins,is_active from users  WHERE id = ? ');
     $query2->bind_param('i', $user_id);
     $query2->execute();
     $query2->store_result();
@@ -53,10 +53,13 @@ if ($num_rows != 0) {
     $response['status'] = 'User not Found';
     }
     else{
-        $query2->bind_result($coins);
+        $query2->bind_result($coins,$status);
         $query2->fetch();
             if($coins<$price){
                 $response['status'] = 'No enough Credit';
+            }
+            else if($status!='active'){
+                $response['status'] = 'User Not Active Fill All info in your proifle to start booking.';
             }
         else{
         $query3 = $mysqli->prepare('INSERT INTO reservations (flight_id, user_id , seat_number) VALUES (?, ?, ?)');
