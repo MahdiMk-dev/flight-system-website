@@ -13,6 +13,7 @@ const cancelButton = document.getElementById('cancel-btn');
 
 const user_container = document.getElementById('passengerDetails');
 const ec_container = document.getElementById('emergencyContactDetails');
+const upcoming_container = document.getElementById('upcoming-bookings');
 
 
 
@@ -41,7 +42,7 @@ const fetchUserDetails = async (user_id) => {
 const loadUserInfoContent = async (user_id) => {
     try {
         const user = await fetchUserDetails(user_id);
-        console.log('User:', user);
+        //console.log('User:', user);
         if (user && user.status === 'success' && user.user) {
             const passengerDetails = user.user;
             user_container.innerHTML = `
@@ -124,93 +125,105 @@ const loadUserInfoContent = async (user_id) => {
     }
 };
 
+const fetchECInfoContent = (user_id) => {
+    fetch(`http://localhost/flight-system-website/backend/profile-page/view-emergency-contacts.php?user_id=${user_id}`, {
+    method: "GET",
+    })
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        //console.log(data);
+        loadECInfoContent(data);
+    })
+    .catch((error) => {
+        console.error(error);
+    }
+};
 
+const loadECInfoContent = (data) => {
+    const {name, email, phone_number, relation} = data.contact;
+    //console.log(data);
+    if (data) {
+        ec_container.innerHTML =
+        `<h2>Emergency Contact Details</h2>
+        <p>Name: <span id="name-EC">${name}</span></p>
+        <p>Email: <span id="email-EC">${email}</span></p>
+        <p>Phone: <span id="phone-EC">${phone_number}</span></p>
+        <p>Relation: <span id="relation-EC">${relation}</span></p>`;
+    }
+}
 
+/*const fetchUpcomingBookings = (user_id) => {
+    fetch(`http://localhost/flight-system-website/backend/profile-page/view-reservations.php?user_id=${user_id}`, {
+    method: "GET",
+    })
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        //console.log(data);
+        loadUpcomingBookings(data);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+};*/
 
-
-
-
-
-
-const fetchECInfoContent = async (user_id) => {
+const fetchUpcomingBookings = async (user_id) => {
     try {
-        const response = await fetch(`http://localhost/flightsWebsite/flight-system-website/backend/profile-page/view-emergency-contacts.php?user_id=${user_id}`);
-        if (!response.ok) {
-            throw new Error('Failed to fetch emergency contact details');
-        }
+        const response = await fetch(`http://localhost/flight-system-website/backend/profile-page/view-reservations.php?user_id=${user_id}`, {
+            method: "GET",
+        });
         const data = await response.json();
-        return data;
+        //console.log(data);
+        loadUpcomingBookings(data);
     } catch (error) {
         console.error(error);
     }
 };
 
-const loadECInfoContent = async (user_id) => {
-    try {
-        const data = await fetchECInfoContent(user_id);
-        console.log('Emergency Contact:', data);
-        if (data) {
-            const { name, email, phone_number, relation } = data.contact;
-            ec_container.innerHTML = `
-                <h2>Emergency Contact Details</h2>
-                <p>Name: <span id="name-EC">${name}</span></p>
-                <p>Email: <span id="email-EC">${email}</span></p>
-                <p>Phone: <span id="phone-EC">${phone_number}</span></p>
-                <p>Relation: <span id="relation-EC">${relation}</span></p>
-            `;
-        } else {
-            console.error('Emergency contact data is invalid:', data);
-        }
-    } catch (error) {
-        console.error('Error loading emergency contact info:', error);
+const loadUpcomingBookings = (data) => {
+    const {flights} = data;
+    upcoming_container.innerHTML = `<h2>Upcoming Bookings</h2>`;
+    if(!flights) {
+        return;
     }
-};
+    flights.forEach((flight,index) => {
+        const {booking_id, date} = flight;
+        const bookingContainer = document.createElement('div');
+        bookingContainer.classList.add('flex', 'row', 'space-between');
 
+        bookingContainer.innerHTML = `
+            <p>ID: <span>${booking_id}</span></p>
+            <p>Date: <span>${date}</span></p>
+            <p>Status: <span>Upcoming</span></p>
+            <button class="cancel-btn">Cancel</button>
+        `;
 
-const fetchBookings = async (user_id) => {
-    try {
-        const response = await fetch(`http://localhost/flightsWebsite/flight-system-website/backend/profile-page/view-reservations.php?user_id=${user_id}`);
-        if (!response.ok) {
-            throw new Error('Failed to fetch bookings');
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching bookings:', error);
-        return null;
-    }
-};
-
-const loadBookings = async (user_id) => {
-    try {
-        const data = await fetchBookings(user_id);
-        console.log('Bookings:', data);
-        if (data && data.flights) {
-            const container = document.getElementById('upcoming-bookings');
-            container.innerHTML = `<h2>Bookings</h2>`;
-            data.flights.forEach((flight, index) => {
-                const bookingContainer = document.createElement('div');
-                bookingContainer.classList.add('flex', 'row', 'space-between');
-                bookingContainer.setAttribute('booking-id', index + 1);
-
-                bookingContainer.innerHTML = `
-                    <p>ID: <span id="booking-ID-${index}">${flight.booking_id}</span></p>
-                    <p>Date: <span id="booking-Date-${index}">${flight.date}</span></p>
-                    <p>Status: <span id="booking-Status-${index}">${flight.statusUP}</span></p>
-                `;
-
-                container.appendChild(bookingContainer);
+        const cancelButton = bookingContainer.querySelector('.cancel-btn');
+        cancelButton.addEventListener('click', async () => {
+            const formData = new FormData();
+            formData.append('user_id', user_id);
+            formData.append('booking_id', booking_id);
+            try {
+                const response = await fetch('http://localhost/flight-system-website/backend/profile-page/cancel-reservation.php', {
+                method: "POST",
+                body: formData
             });
-        } else {
-            console.error('Invalid bookings data:', data);
-        }
-    } catch (error) {
-        console.error('Error loading bookings:', error);
-    }
-};
+            const responseData = await response.json();
+            console.log(responseData);
+            await fetchUpcomingBookings(user_id);
+            }
+            catch(error) {
+                console.error(error);
+            }
+        });
 
-
+        upcoming_container.appendChild(bookingContainer);
+    });
+}
 
 loadUserInfoContent(user_id);
-loadECInfoContent(user_id);
-loadBookings(user_id);
+fetchECInfoContent(user_id);
+fetchUpcomingBookings(user_id);
