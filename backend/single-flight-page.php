@@ -1,5 +1,21 @@
 <?php
 include('./connection.php');
+include('jwt_functions.php'); // Include JWT functions file
+require_once('./vendor/autoload.php');
+$headers=apache_request_headers();
+
+$token=validate_token_exist($headers);
+if($token["message"]!='success'){
+    $response['status'] = $token["message"];
+    echo json_encode($response);
+    exit; // Terminate the script
+}
+$valid_token=verifyToken($token['jwt']);
+if($valid_token["message"]!="success"){
+    $response['status'] = $valid_token["message"];
+    echo json_encode($response);
+    exit; // Terminate the script
+}
 
 // Check if flight_id is provided in the request
 if (!isset($_GET['flight_id'])) {

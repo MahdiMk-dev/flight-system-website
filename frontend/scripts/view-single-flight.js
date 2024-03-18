@@ -1,23 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
-    function getUrlParameters() {
-        const queryString = window.location.search.slice(1);
-        const params = {};
-        queryString.split('&').forEach(param => {
-            const [key, value] = param.split('=');
-            params[key] = decodeURIComponent(value);
-        });
-        return params;
-    }
-    
+
     // Get user_id and flight_id from the URL parameters
-    const { user_id, flight_id } = getUrlParameters();
-    
-    // Get user_id and flight_id from the URL
-    const userId = getUrlParameter('user_id');
-    const flightId = getUrlParameter('flight_id');
+    var url = window.location.href;
+
+    // Create a URLSearchParams object with the URL
+    var params = new URLSearchParams(url);
+
+    // Get a specific parameter value by name
+    var $flight_id = params.get('flight_id');
+    const jwtToken = localStorage.getItem('jwtToken');
 
     // Fetch flights data using the user ID
-    fetch(`http://localhost/flight-system-website/backend/single-flight-page.php?flight_id=`+{$flight_id})
+    fetch(`http://localhost/flight-system-website/backend/single-flight-page.php?flight_id=`+{$flight_id},{
+        headers: {
+              'Authorization': `Bearer ${jwtToken}`
+            }
+    })
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
