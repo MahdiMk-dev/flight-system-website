@@ -49,6 +49,7 @@ const loadUserInfoContent = async (user_id) => {
                 <p>Name: <span id="name">${passengerDetails.username}</span></p>
                 <p>Email: <span id="email">${passengerDetails.email}</span></p>
                 <p>Password: <span id="password">${passengerDetails.password}</span></p>
+                <p>Date Of Birth: <span id="dob">${passengerDetails.dob}</span></p>
                 <p>Nationality: <span id="nationality">${passengerDetails.nationality}</span></p>
                 <p>Passport: <span id="passport">${passengerDetails.passport_number}</span></p>
                 <p>Phone: <span id="phone">${passengerDetails.phone_number}</span></p>
@@ -60,6 +61,7 @@ const loadUserInfoContent = async (user_id) => {
                 document.getElementById('name').innerHTML = `<input type="text" value="${passengerDetails.username}" id="editName">`;
                 document.getElementById('email').innerHTML = `<input type="email" value="${passengerDetails.email}" id="editEmail">`;
                 document.getElementById('password').innerHTML = `<input type="password" value="${passengerDetails.password}" id="editPassword">`;
+                document.getElementById('dob').innerHTML = `<input type="date" value="${passengerDetails.dob}" id="editDob">`;
                 document.getElementById('nationality').innerHTML = `<input type="text" value="${passengerDetails.nationality}" id="editNationality">`;
                 document.getElementById('passport').innerHTML = `<input type="number" value="${passengerDetails.passport_number}" id="editPassport">`;
                 document.getElementById('phone').innerHTML = `<input type="tel" value="${passengerDetails.phone_number}" id="editPhone">`;
@@ -72,6 +74,7 @@ const loadUserInfoContent = async (user_id) => {
                     const editedName = document.getElementById('editName').value;
                     const editedEmail = document.getElementById('editEmail').value;
                     const editedPassword = document.getElementById('editPassword').value;
+                    const editedDob = new Date(document.getElementById('editDob').value).toISOString().split('T')[0]; // Ensure correct date format
                     const editedNationality = document.getElementById('editNationality').value;
                     const editedPassport = document.getElementById('editPassport').value;
                     const editedPhone = document.getElementById('editPhone').value;
@@ -87,6 +90,7 @@ const loadUserInfoContent = async (user_id) => {
                                 username: editedName,
                                 email: editedEmail,
                                 password: editedPassword,
+                                dob: editedDob,
                                 nationality: editedNationality,
                                 passport_number: editedPassport,
                                 phone_number: editedPhone,
@@ -98,6 +102,7 @@ const loadUserInfoContent = async (user_id) => {
                         document.getElementById('name').textContent = editedName;
                         document.getElementById('email').textContent = editedEmail;
                         document.getElementById('password').textContent = editedPassword;
+                        document.getElementById('dob').textContent = editedDob;
                         document.getElementById('nationality').textContent = editedNationality;
                         document.getElementById('passport').textContent = editedPassport;
                         document.getElementById('phone').textContent = editedPhone;
@@ -118,6 +123,7 @@ const loadUserInfoContent = async (user_id) => {
         console.error('Error loading user info:', error);
     }
 };
+
 
 
 
