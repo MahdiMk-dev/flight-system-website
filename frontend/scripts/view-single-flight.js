@@ -1,14 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Function to parse URL parameters
-    function getUrlParameter(name) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-        var results = regex.exec(location.search);
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-    };
-
-    // Retrieve user ID from URL parameter
-    var userId = getUrlParameter('flight_id');
+    function getUrlParameters() {
+        const queryString = window.location.search.slice(1);
+        const params = {};
+        queryString.split('&').forEach(param => {
+            const [key, value] = param.split('=');
+            params[key] = decodeURIComponent(value);
+        });
+        return params;
+    }
+    
+    // Get user_id and flight_id from the URL parameters
+    const { user_id, flight_id } = getUrlParameters();
+    
+    // Get user_id and flight_id from the URL
+    const userId = getUrlParameter('user_id');
+    const flightId = getUrlParameter('flight_id');
 
     // Fetch flights data using the user ID
     fetch(`http://localhost/flight-system-website/backend/single-flight-page.php?flight_id=`+{$flight_id})
