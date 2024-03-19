@@ -6,7 +6,7 @@ $user_id = $_GET['user_id'];
 $statusCanceled = 'canceled';
 $statusComplete = 'completed';
 
-$query = $mysqli->prepare('select reservations.id as id, reservations.status ,flights.departure_date as date from flights join reservations on flights.id = reservations.flight_id where user_id = ? and (reservations.status != ? or reservations.status != ?)');
+$query = $mysqli->prepare('select reservations.id as id, reservations.status ,flights.departure_date as date from flights join reservations on flights.id = reservations.flight_id where user_id = ? and (reservations.status = ? or reservations.status = ?)');
 $query->bind_param('iss', $user_id, $statusComplete, $statusCanceled);
 $query->execute();
 $query->store_result();
