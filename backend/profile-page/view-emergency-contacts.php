@@ -12,19 +12,16 @@ if ($num_rows == 0) {
     $response['status'] = 'no emergency conatacts';
 } else {
     $query->bind_result($name, $phone_number, $email, $relation);
-    $contacts = [];
-    while ($query->fetch()) {
-        $contact =[
-            'name' => $name,
-            'phone_number' => $phone_number,
-            'email' => $email,
-            'relation' => $relation
-        ];
-    $contacts[] = $contact;
+    $query->fetch();
+    $contact =[
+        'name' => $name,
+        'phone_number' => $phone_number,
+        'email' => $email,
+        'relation' => $relation
+    ];
 
     $response['status'] = "success";
-    $response['contacts'] = $contacts;
-}
+    $response['contact'] = $contact;
 }
 
 echo json_encode($response);

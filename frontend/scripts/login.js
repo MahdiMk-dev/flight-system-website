@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('email', email);
         formData.append('password', password);
 
-        fetch('http://localhost/flight-system-website/backend/login.php', {
+        fetch('http://localhost/flightsWebsite/flight-system-website/backend/login.php', {
             method: 'POST',
             body: formData
         })
@@ -22,8 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('jwtToken', data.token);
 
                 //redirect to landing page when implemented 
-                window.location.href = './main.html?user_id=' + data.user_id;
+                window.location.href = './profile.html?user_id=' + data.user_id;
             } else {
+                console.log("User not found script log")
                 alert(data.status);
             }
         })
