@@ -11,63 +11,97 @@
     <title>Admin Panel</title>
 </head>
 <body>
-    <div class="panel-container">
-        <div class="panel-left">
-          <div class="logo">
-            <img src="" alt="" class="logo-img"/>
-            <h2>ADMIN</h2>
-          </div>
-    
-          <div class="side-bar">
-            <a href="#">
-              <i class="uil uil-window"></i>
-              <h3>Dashboard</h3>
-            </a>
-            <a href="#">
-              <i class="uil uil-plane-departure"></i>
-              <h3>Flights</h3>
-            </a>
-            <a href="#">
-              <i class="uil uil-coins"></i>
-              <h3>Booking</h3>
-            </a>
-            <a href="#">
-              <i class="uil uil-comment"></i>
-              <h3>Reviews</h3>
-            </a>
-            <a href="#">
-              <i class="uil uil-plus"></i>
-              <h3>Add Flights</h3>
-            </a>
-            
-          </div>
-        </div>
+  <div class="flex">
+    <div class="panel-left flex column">
+      <div class="logo">
+        <img src="" alt="" class="logo-img"/>
+        <h2>ADMIN</h2>
+      </div>
 
-        <div class="panel-right">
-            <div class="flex nav-bar">
-                <h1>Dashboard</h1>
-                <div class="text">Hello,  admin</div>
-            </div>
-            <div class="analysis flex center">
-                <div class="card">
-                    <i class="uil uil-arrow-growth"></i>
-                    <h4>Total Flights</h4>
-                    <h3>249</h3>
-                </div>
-
-                <div class="card">
-                    <i class="uil uil-arrow-growth"></i>
-                    <h4>Users Number</h4>
-                    <h3>24</h3>
-                </div>
-
-                <div class="card">
-                    <i class="uil uil-arrow-growth"></i>
-                    <h4>Revenue</h4>
-                    <h3>$32,249</h3>
-                </div>
-            </div>
-        </div>
+      <div class="side-bar flex column">
+        <a href="#">
+          <i class="uil uil-window"></i>
+          <h3>Dashboard</h3>
+        </a>
+        <a href="#">
+          <i class="uil uil-plane-departure"></i>
+          <h3>Flights</h3>
+        </a>
+        <a href="#">
+          <i class="uil uil-coins"></i>
+          <h3>Booking</h3>
+        </a>
+        <a href="#">
+          <i class="uil uil-comment"></i>
+          <h3>Reviews</h3>
+        </a>
+        <a href="#">
+          <i class="uil uil-plus"></i>
+          <h3>Add Flights</h3>
+        </a>    
+      </div>
     </div>
+
+    <div class="panel-right flex column">
+      <div class="flex nav-bar">
+        <h1>Dashboard</h1>
+        <div class="text">Hello,  admin</div>
+      </div>
+
+      <div class="analysis flex center">
+        <div class="card">
+          <i class="uil uil-plane-departure"></i>
+          <h4>Total Flights</h4>
+          <h3>249</h3>
+        </div>
+
+        <div class="card">
+          <i class="uil uil-user"></i>
+          <h4>Users Number</h4>
+          <h3>24</h3>
+        </div>
+
+        <div class="card">
+          <i class="uil uil-arrow-growth"></i>
+          <h4>Revenue</h4>
+          <h3>$21500</h3>
+        </div>
+      </div>
+        
+      <div class="flights-table">
+        <div class="flex space-between">
+          <h2>Flights</h2>
+          <button class="add-btn"><i class="uil uil-plus"></i></button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Flight Id</th>
+              <th>Departure Time</th>
+              <th>Arrival Time</th>
+              <th>Airplane</th>
+              <th>Status</th>
+              <th>price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>2024-04-01 08:00:00</td>
+              <td>2024-04-01 10:00:00</td>
+              <td>Boeing</td>
+              <td>Pending</td>
+              <td>500$</td>
+              <td>
+                <button class="edit-btn"><i class="uil uil-edit"></i></button>
+                <button class="cancel-btn"><i class="uil uil-trash-alt"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
