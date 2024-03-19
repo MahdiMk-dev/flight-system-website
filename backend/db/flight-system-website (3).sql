@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 18, 2024 at 10:40 PM
+-- Generation Time: Mar 19, 2024 at 09:20 PM
 -- Server version: 8.0.31
 -- PHP Version: 7.4.33
 
@@ -157,14 +157,17 @@ CREATE TABLE IF NOT EXISTS `flights` (
   `airplane_id` int NOT NULL,
   `status` varchar(50) NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `flights`
 --
 
 INSERT INTO `flights` (`id`, `price`, `departure_airport_id`, `arrival_airport_id`, `departure_date`, `departure_time`, `arrival_date`, `arrival_time`, `airplane_id`, `status`) VALUES
-(1, 1000, 1, 2, '2024-03-05', '01:00:00', '2024-03-06', '15:00:00', 2, 'Pending');
+(1, 1000, 1, 2, '2024-03-05', '01:00:00', '2024-03-06', '15:00:00', 2, 'Pending'),
+(2, 1000, 1, 2, '2024-03-05', '01:00:00', '2024-03-06', '15:00:00', 4, 'Pending'),
+(3, 1000, 1, 2, '2024-03-05', '01:00:00', '2024-03-06', '15:00:00', 3, 'Pending'),
+(4, 1000, 1, 2, '2024-03-05', '01:00:00', '2024-03-06', '15:00:00', 2, 'Pending');
 
 -- --------------------------------------------------------
 
@@ -180,7 +183,20 @@ CREATE TABLE IF NOT EXISTS `flight_review` (
   `user_id` int NOT NULL,
   `flight_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `flight_review`
+--
+
+INSERT INTO `flight_review` (`id`, `rating`, `review`, `user_id`, `flight_id`) VALUES
+(1, 1, 'gfdgfdgdgvfdg', 6, 1),
+(2, 1, 'gfdgfdgdgvfdg', 6, 1),
+(3, 2, 'gfdgfdgdgvfdg', 6, 1),
+(4, 3, 'gfdgfdgdgvfdg', 6, 1),
+(5, 3, 'gfdgfdgdgvfdg', 6, 2),
+(6, 3, 'gfdgfdgdgvfdg', 6, 1),
+(7, 3, 'gfdgfdgdgvfdg', 6, 1);
 
 -- --------------------------------------------------------
 
@@ -195,7 +211,14 @@ CREATE TABLE IF NOT EXISTS `payment_request` (
   `amount` int NOT NULL,
   `status` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payment_request`
+--
+
+INSERT INTO `payment_request` (`id`, `user_id`, `amount`, `status`) VALUES
+(1, 6, 1000, 'Pending');
 
 -- --------------------------------------------------------
 
@@ -211,7 +234,16 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   `seat_number` int NOT NULL,
   `status` varchar(40) NOT NULL DEFAULT 'Confirmed',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `reservations`
+--
+
+INSERT INTO `reservations` (`id`, `flight_id`, `user_id`, `seat_number`, `status`) VALUES
+(8, 1, 6, 7, 'Confirmed'),
+(7, 1, 6, 6, 'Confirmed'),
+(6, 1, 6, 5, 'Confirmed');
 
 -- --------------------------------------------------------
 
@@ -232,7 +264,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `phone_number` int DEFAULT NULL,
   `coins` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `is_active`, `dob`, `nationality`, `passport_number`, `phone_number`, `coins`) VALUES
+(6, 'Mahdi', '123@123', '$2y$10$q1WXlMTP8KnteeQ3AhkUMuZtKw8x66uL6ladQx1FZ8il4Ip2GdKEi', 'active', NULL, NULL, NULL, NULL, 4000);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
