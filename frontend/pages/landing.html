@@ -29,11 +29,11 @@
     </nav>
     <!-- //////////////////////////////////////////////////// -->
     <div class="navbar">
-        <nav>
-          <ul>
+        <nav class="filter">
+          <ul class="filter1">
             </li>
             <li><div>
-              <label for="originSelect">      origin:</label>
+              <label for="originSelect">origin:</label>
             <select id="originSelect">
               <option value="All Locations" selected >All </option>
                         <option value="#" >na</option>
@@ -41,7 +41,7 @@
           </div>
             </li>
             <li><div>
-              <label for="destinationSelect">     destination:</label>
+              <label for="destinationSelect">destination:</label>
             <select id="destinationSelect">
               <option value="All " selected >All </option>
          <option value="#" >na</option>
@@ -49,7 +49,7 @@
           </div>
             </li>
             <li><div>
-                <label for="airlineSelect">      airline:</label>
+                <label for="airlineSelect">airline:</label>
               <select id="airlineSelect">
                 <option value="All " selected >All </option>
            <option value="#" >na</option>
@@ -57,14 +57,16 @@
             </div>
               </li>
               <li>
-                <input type="text" id="search" name="search">
                 <label for="lname">to</label>
+                <input type="text" id="search" name="search">
+                
               </li>
               <li>
-                <input type="text" id="search" name="search">
                 <label for="lname">from</label>
+
+                <input type="text" id="search" name="search">
               </li>
-              <li><button id="filter">filter</button></li>
+              <li><button id="filter" class="bt">filter</button></li>
           </ul>
         </nav>
       </div>
