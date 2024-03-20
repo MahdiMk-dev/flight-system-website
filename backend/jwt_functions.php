@@ -34,7 +34,7 @@
         try{
         $token = JWT::decode($jwt, new Key($secretKey, 'HS512'));
         $now = new DateTimeImmutable();
-        $serverName = "http://localhost/flightsWebsite/flight-system-website/";
+        $serverName = "http://localhost/flight-system-website/";
         $response["message"]="success";
         $response["user"]= $token->userName;
         } catch (ExpiredException $e) {
