@@ -5,6 +5,9 @@
     border: 0;
     font-family: sans-serif;
 }
+body{
+    background-color: white;
+}
 
 .header-container {
     width: 80%;
