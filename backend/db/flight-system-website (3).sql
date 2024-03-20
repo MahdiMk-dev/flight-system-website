@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 19, 2024 at 09:20 PM
--- Server version: 8.0.31
--- PHP Version: 7.4.33
+-- Host: 127.0.0.1:3306
+-- Generation Time: Mar 20, 2024 at 06:22 PM
+-- Server version: 8.2.0
+-- PHP Version: 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,10 +30,10 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `airlines`;
 CREATE TABLE IF NOT EXISTS `airlines` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `country` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `headquarters` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `website` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `country` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `headquarters` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -105,10 +105,10 @@ INSERT INTO `airplane_models` (`id`, `name`, `capacity`) VALUES
 DROP TABLE IF EXISTS `airports`;
 CREATE TABLE IF NOT EXISTS `airports` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `city` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `country` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `code` varchar(3) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `city` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `country` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `code` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -124,11 +124,11 @@ INSERT INTO `airports` (`id`, `name`, `city`, `country`, `code`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `emergency-contacts`
+-- Table structure for table `emergency_contacts`
 --
 
-DROP TABLE IF EXISTS `emergency-contacts`;
-CREATE TABLE IF NOT EXISTS `emergency-contacts` (
+DROP TABLE IF EXISTS `emergency_contacts`;
+CREATE TABLE IF NOT EXISTS `emergency_contacts` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -167,29 +167,29 @@ INSERT INTO `flights` (`id`, `price`, `departure_airport_id`, `arrival_airport_i
 (1, 1000, 1, 2, '2024-03-05', '01:00:00', '2024-03-06', '15:00:00', 2, 'Pending'),
 (2, 1000, 1, 2, '2024-03-05', '01:00:00', '2024-03-06', '15:00:00', 4, 'Pending'),
 (3, 1000, 1, 2, '2024-03-05', '01:00:00', '2024-03-06', '15:00:00', 3, 'Pending'),
-(4, 1000, 1, 2, '2024-03-05', '01:00:00', '2024-03-06', '15:00:00', 2, 'Pending');
+(4, 1000, 1, 2, '2024-03-05', '01:00:00', '2024-03-06', '15:00:00', 2, 'completed');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `flight_review`
+-- Table structure for table `flight_reviews`
 --
 
-DROP TABLE IF EXISTS `flight_review`;
-CREATE TABLE IF NOT EXISTS `flight_review` (
+DROP TABLE IF EXISTS `flight_reviews`;
+CREATE TABLE IF NOT EXISTS `flight_reviews` (
   `id` int NOT NULL AUTO_INCREMENT,
   `rating` int NOT NULL,
-  `review` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `review` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `user_id` int NOT NULL,
   `flight_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `flight_review`
+-- Dumping data for table `flight_reviews`
 --
 
-INSERT INTO `flight_review` (`id`, `rating`, `review`, `user_id`, `flight_id`) VALUES
+INSERT INTO `flight_reviews` (`id`, `rating`, `review`, `user_id`, `flight_id`) VALUES
 (1, 1, 'gfdgfdgdgvfdg', 6, 1),
 (2, 1, 'gfdgfdgdgvfdg', 6, 1),
 (3, 2, 'gfdgfdgdgvfdg', 6, 1),
@@ -201,23 +201,23 @@ INSERT INTO `flight_review` (`id`, `rating`, `review`, `user_id`, `flight_id`) V
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment_request`
+-- Table structure for table `payment_requests`
 --
 
-DROP TABLE IF EXISTS `payment_request`;
-CREATE TABLE IF NOT EXISTS `payment_request` (
+DROP TABLE IF EXISTS `payment_requests`;
+CREATE TABLE IF NOT EXISTS `payment_requests` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `amount` int NOT NULL,
-  `status` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Pending',
+  `status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `payment_request`
+-- Dumping data for table `payment_requests`
 --
 
-INSERT INTO `payment_request` (`id`, `user_id`, `amount`, `status`) VALUES
+INSERT INTO `payment_requests` (`id`, `user_id`, `amount`, `status`) VALUES
 (1, 6, 1000, 'Pending');
 
 -- --------------------------------------------------------
@@ -234,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `reservations` (
   `seat_number` int NOT NULL,
   `status` varchar(40) NOT NULL DEFAULT 'Confirmed',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `reservations`
@@ -243,7 +243,15 @@ CREATE TABLE IF NOT EXISTS `reservations` (
 INSERT INTO `reservations` (`id`, `flight_id`, `user_id`, `seat_number`, `status`) VALUES
 (8, 1, 6, 7, 'Confirmed'),
 (7, 1, 6, 6, 'Confirmed'),
-(6, 1, 6, 5, 'Confirmed');
+(6, 1, 6, 5, 'Confirmed'),
+(9, 1, 6, 4, 'Confirmed'),
+(10, 1, 6, 10, 'Confirmed'),
+(11, 1, 6, 15, 'Confirmed'),
+(12, 3, 6, 6, 'canceled'),
+(13, 1, 9, 70, 'canceled'),
+(14, 1, 9, 30, 'Confirmed'),
+(15, 3, 8, 3, 'Confirmed'),
+(16, 1, 11, 99, 'Confirmed');
 
 -- --------------------------------------------------------
 
@@ -264,14 +272,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   `phone_number` int DEFAULT NULL,
   `coins` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `is_active`, `dob`, `nationality`, `passport_number`, `phone_number`, `coins`) VALUES
-(6, 'Mahdi', '123@123', '$2y$10$q1WXlMTP8KnteeQ3AhkUMuZtKw8x66uL6ladQx1FZ8il4Ip2GdKEi', 'active', NULL, NULL, NULL, NULL, 4000);
+(6, 'Mahdi', '123@123', '$2y$10$q1WXlMTP8KnteeQ3AhkUMuZtKw8x66uL6ladQx1FZ8il4Ip2GdKEi', 'active', NULL, NULL, NULL, NULL, 9000),
+(7, 'mahdimk', 'mokaledmahdi@gmail.com', '$2y$10$JG8X4ijN5ux1zImxgWLp7uLfiqcRur4C/64kE1F3z3jrGW/3fnsiG', 'inactive', NULL, NULL, NULL, NULL, 9000),
+(8, 'Group', 'project@123', '$2y$10$R6EKy1tl0gEAku8XwnZKF.fShnklWorf/kdEZ3g5Cv3noUeP4PVgO', 'active', '2024-03-04', 'Canadian', 123, 123, 9000),
+(9, 'louay', 'louay@123', '$2y$10$lya2j4LAIJ6WQIbQVYc/p.vWubMLFXcEztYcCXfTFp2ZH2vrlCh4G', 'active', '2024-03-11', 'British', 123, 123, 9000),
+(10, 'test', 'test@test', '$2y$10$gHymlm3JPf8TXCPqS5JkhO5YQpvQUE1XCOd3fIqhRGB/IszeELqiO', 'active', '2024-03-11', 'British', 123, 1245, 9000),
+(11, 'hello', 'hello@world', '$2y$10$Yb5JRdw3Bi.3nBsRqUxJ2uy7SlbttZSerhfWTMeSy5bEhwno.dEPO', 'active', '2024-03-18', 'American', 12241413, 431413, 9000),
+(12, '321', '321@321', '$2y$10$TouWKlL9GL7ksblfwVAgB.9HwC/GNqmjkFJ9PhSecnIv0.kUNRbqu', 'inactive', NULL, NULL, NULL, NULL, 9000);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
