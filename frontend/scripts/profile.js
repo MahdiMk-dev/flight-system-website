@@ -137,10 +137,9 @@ const flightStatus = document.getElementById('flight-Status');
         // Get the amount from the input field
         let amount = document.getElementById("amount").value;
     
-        // Create a data object to send with the request
-        let data = {
-            amount: amount
-        };
+    
+        let formData = new FormData();
+        formData.append('amount', amount);
     
         // Fetch API address
         fetch('http://localhost/flight-system-website/backend/profile-page/request_coins.php', {
@@ -148,7 +147,7 @@ const flightStatus = document.getElementById('flight-Status');
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: formData,
         })
         .then(response => {
             if (!response.ok) {

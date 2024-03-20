@@ -7,10 +7,9 @@ require_once('./vendor/autoload.php');
 $where_condition="";
 
 // Check if flight_id is provided in the request
-if (isset($_POST) && count($_POST)!=0 ) {
+if (isset($_POST["filter"]) && count($_POST)!=0 ) {
     $where_condition=" where ";
-    foreach ($_POST as $key => $value) {
-    $where_condition.=" ".$key."='".$value."' and ";
+    $where_condition.=$_POST["filter"];
 }
 $lastOccurrence = strrpos($where_condition, "and");
 
@@ -19,7 +18,7 @@ if ($lastOccurrence !== false) {
     $where_condition = substr($where_condition, 0, $lastOccurrence) . substr($where_condition, $lastOccurrence + strlen("and"));
 }
 
-}
+
 
 
 

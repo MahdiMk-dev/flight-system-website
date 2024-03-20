@@ -11,7 +11,7 @@
 </head>
 <body>
     
-    <nav class="nav1">
+    <nav>
         <div class="hamburger">
             <div class="line1"></div>
             <div class="line2"></div>
@@ -35,39 +35,41 @@
             <li><div>
               <label for="originSelect">      origin:</label>
             <select id="originSelect">
-              <option value="All Locations" selected >All </option>
-                        <option value="#" >na</option>
             </select>
           </div>
             </li>
             <li><div>
               <label for="destinationSelect">     destination:</label>
             <select id="destinationSelect">
-              <option value="All " selected >All </option>
-         <option value="#" >na</option>
             </select>
           </div>
             </li>
             <li><div>
                 <label for="airlineSelect">      airline:</label>
               <select id="airlineSelect">
-                <option value="All " selected >All </option>
-           <option value="#" >na</option>
               </select>
             </div>
+
+              </li>
+          </br>
+              <li>
+                <input type="date" id="departuredate" name="search">
+                <label for="Departure_date">Departure Date</label>
               </li>
               <li>
-                <input type="text" id="search" name="search">
-                <label for="lname">to</label>
+                <input type="date" id="arrivaldate" name="search">
+                <label for="Arrival Date">Arrival Date</label>
               </li>
               <li>
-                <input type="text" id="search" name="search">
-                <label for="lname">from</label>
+                   <button type="button" id="Applyfilter"></button>
               </li>
           </ul>
+       
+                
+              
         </nav>
       </div>
-    
+   
     <section class="home">
         <div class="home-content"  >
             <h1>  Get up to <span class="highlight">20%</span>  off 
@@ -116,6 +118,7 @@
 
 
      <article id="card">
+
             <section class="card" >
               <div class="text-content">
                 <h3>Paris</h3>
@@ -128,7 +131,9 @@
             </section> 
           </article>
         </div>
-        <section class="ads" id="ads"></section>
+        <article class="ads" id="ads">
+           <h2>Ads Section</h2>
+        </article>
         <section class="flightCard" id="flightCard"></section>
         <footer class="footer">
             <div class="social">

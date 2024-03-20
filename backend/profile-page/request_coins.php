@@ -1,7 +1,9 @@
 <?php
 include('../connection.php');
 include('../jwt_functions.php'); // Include JWT functions file
+//require_once('../vendor/autoload.php');
 require_once('../vendor/autoload.php');
+
 $headers=apache_request_headers();
 $token=validate_token_exist($headers);
 $response = array(); // Initialize response array
