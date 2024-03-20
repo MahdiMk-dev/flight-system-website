@@ -7,7 +7,29 @@ const bookingStatus = document.getElementById('booking-Status');
 
 const flightID = document.getElementById('flight-ID');
 const flightStatus = document.getElementById('flight-Status');
+const getBalance = (userId) => {
+    // Fetch flights data using the user ID
 
+
+fetch('http://localhost/flight-system-website/backend/profile-page/balance.php?user_id='+userId
+)
+.then(response => response.json())
+.then(data => {
+    if (data.status === "success") {
+       const balance = document.getElementById('balance'); 
+       balance.innerHTML="Balance: "+data.coins
+    }
+    else{
+    const balance = document.getElementById('balance'); 
+       balance.innerHTML="Balance: 0"
+    }
+})
+}
+
+
+
+  
+    
         // Function to load user details onto the page
     const loadUserInfoContent = (container, userId) => {
             // Fetch flights data using the user ID
@@ -120,7 +142,7 @@ const flightStatus = document.getElementById('flight-Status');
             // Handle the response
             if (data.status == 'succcess') {
                 alert("updated successfuly")
-                    location.reload();
+                 //   location.reload();
             }
             else{
                 alert(data.status)
@@ -144,17 +166,14 @@ const flightStatus = document.getElementById('flight-Status');
         let amount = document.getElementById("amount").value;
         var formData = new FormData();
         formData.append('amount', amount);
-        const jwtTokenn = localStorage.getItem('jwtToken');
+        const jwtToken = localStorage.getItem('jwtToken');
        fetch('http://localhost/flight-system-website/backend/request_coins.php', {
         method: 'POST',
-        //mode: 'cors', // Ensure CORS mode
+        mode: 'cors', // Ensure CORS mode
         body:formData,
         headers: {
-              'Authorization': `Bearer ${jwtTokenn}`
-            },
-            
-        body:formData,
-
+              'Authorization': `Bearer ${jwtToken}`
+            }
     }
     )
         .then(response => response.json())
@@ -175,8 +194,7 @@ const flightStatus = document.getElementById('flight-Status');
             console.error('Error:', error);
             alert("Error: " + error.message);
         });
-    })
-    
+    });
 
     const loadECInfoContent = (container, userId) => {
             // Fetch flights data using the user ID
@@ -210,7 +228,7 @@ const flightStatus = document.getElementById('flight-Status');
     )
         .then(response => response.json())
         .then(data => {
-            if (data.status === 'success') {
+            if (data.status == 'success') {
                 console.log("success")
                 console.log(data)
                 container.innerHTML = `<h2>Coins Requests</h2>`;
@@ -284,7 +302,7 @@ const flightStatus = document.getElementById('flight-Status');
             if (data.status === 'success') {
                 console.log("success")
                 console.log(data)
-                 location.reload();
+              //   location.reload();
             }
             else
             {
@@ -356,6 +374,7 @@ const flightStatus = document.getElementById('flight-Status');
                 loadUpcomingBookingsContent(upcomingBookingsContainer, user_id);
                 loadBookingsHistoryContent(bookingsHistoryContainer, user_id);
                 loadCoinsRequest(CoinsConrtainer,user_id)
+                getBalance(user_id)
 
 
 
