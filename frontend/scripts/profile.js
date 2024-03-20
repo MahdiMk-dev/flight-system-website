@@ -256,6 +256,8 @@ const flightStatus = document.getElementById('flight-Status');
                     <p>Date: <span id="booking-Date-${flight.id}">${flight.date}</span></p>
                     <p>Status: <span id="booking-Status-${flight.id}">${flight.status}</span></p>
                     <button class="cancel-btn" id="${flight.id}"">Cancel</button>
+                    <button class="review" id="${flight.id}"">review</button>
+
                 `;
                 container.appendChild(bookingContainer)
     
