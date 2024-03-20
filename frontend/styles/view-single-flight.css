@@ -6,8 +6,6 @@ body {
 }
 
 .container {
-    display: flex;
-    flex-wrap: wrap;
     width: 80%;
     margin: auto;
     padding: 20px;
@@ -50,12 +48,10 @@ nav .container {
 }
 
 .hero {
-    background-image: url('../images/test.png');
+    background-image: url('../images/testing.jpg');
     background-size: cover;
     color: #fff;
-    padding: 200px 100px;
-    padding-bottom: 400px;
-    margin-bottom: 50px;
+    padding: 100px 0;
     text-align: center;
 }
 
@@ -81,12 +77,4 @@ button {
 
 button:hover {
     background-color: #555;
-}
-
-.flight-card{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
