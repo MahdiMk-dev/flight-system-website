@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../styles/profile.css">
     <link rel="stylesheet" href="../styles/utilities.css">
     <link rel="stylesheet" href="../styles/colors.css">
@@ -14,7 +15,7 @@
     <header>
         <nav>
             <div class="header-container">
-                <h1 class="logo">Flight Booking</h1>
+               <img  class="logo" src="../images/LOGO.png" alt="logo">
                 <ul class="nav-links">
                     <li><a href="../pages/landing.html?user_id="+user_id>Home</a></li>
                     <li><a href="#">About</a></li>
@@ -25,20 +26,23 @@
         </nav>
     </header>
 
-    <main class="flex column center full-width black-bg white-text">
+    <main class="flex column center full-width main-bg black-text-p">
         
-        <div id="passengerDetails" class="flex column half-width half-height passDetails-section">
+        <div id="passengerDetails" class="flex column half-width half-height border-black passDetails-section">
         </div>
+        <div class="btn-container">
         <button id="edit-User-btn">Edit</button>
         <button id="saveUserDetailsBtn">Save</button>
-
-
-        <div id="emergencyContactDetails" class="flex column half-width half-height ECD-section">
         </div>
+
+
+        <div id="emergencyContactDetails" class="flex column half-width border-black half-height ECD-section">
+        </div>
+        <div class="btn-container">
         <button id="edit-EC-btn">Edit</button>
         <button id="saveECDetailsBtn">Save</button>
-        
-        <div id="upcoming-bookings" class="flex column half-width half-height bookings-section">
+    </div>
+        <div id="upcoming-bookings" class="flex column half-width half-height border-black bookings-section">
             <!-- <h2>Upcoming Bookings</h2>
             <div booking-id="1" class="flex row space-between">
                 <p>ID: <span id="booking-ID">1</span></p>
@@ -48,7 +52,25 @@
             </div>
         </div>
 
-        <div id="bookings-history" class="flex column half-width half-height bookings-section">
+        <div id="bookings-history" class="flex column half-width border-black half-height bookings-section">
+            <!-- <h2>Bookings History</h2>
+            <div booking-id="1" class="flex row space-between">
+                <p>ID: <span id="booking-ID">1</span></p>
+                <p>Date: <span id="booking-Date">23/2/2024</span></p>
+                <p>Status: <span id="booking-Status">Upcoming</span></p>
+            </div> -->
+
+        </div>
+        <div id="reviews" class="flex column half-width border-black half-height bookings-section">
+            <!-- <h2>Bookings History</h2>
+            <div booking-id="1" class="flex row space-between">
+                <p>ID: <span id="booking-ID">1</span></p>
+                <p>Date: <span id="booking-Date">23/2/2024</span></p>
+                <p>Status: <span id="booking-Status">Upcoming</span></p>
+            </div> -->
+
+        </div>
+        <div id="coins" class="flex column half-width border-black half-height bookings-section">
             <!-- <h2>Bookings History</h2>
             <div booking-id="1" class="flex row space-between">
                 <p>ID: <span id="booking-ID">1</span></p>
@@ -60,7 +82,14 @@
    
     </main>
 
-    <footer></footer>
-]    <script src="../scripts/profile.js"></script>
+    <footer class="footer">
+        <div class="social">
+          <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+          <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+          <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+          <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+        </div>
+      </footer>   
+       <script src="../scripts/profile.js"></script>
 </body>
 </html>

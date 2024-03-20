@@ -25,3 +25,11 @@
 .black-bg {
     background-color: #434343;
 }
+.main-bg{
+    background-color: #D2EBF5;
+}
+.border-black{
+    border-color: #4481EB;
+    border-width: 3px;
+    background-color: #FFFFFF;
+}
