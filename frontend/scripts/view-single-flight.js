@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (data.status!="error" && data.status!="no_flight_found")
                 window.location.href="http://localhost/flight-system-website/frontend/pages/login.html"
                 else
-                window.location.href="http://localhost/flight-system-website/frontend/pages/main.html"
+                window.location.href="http://localhost/flight-system-website/frontend/pages/login.html"
                 console.error('No flights found in the database.');
         
             }

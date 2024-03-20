@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fligh System Website</title>
+    <title>Flight System Website</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../styles/landing.css">
@@ -18,13 +18,56 @@
             <div class="line3"></div>
         </div>
         <ul class="nav-links">
+            <li class="logo"><img src="../images/LOGO.png" alt=""></li>
+            <li>
+                <input type="text" id="search" name="search">
+                <label for="lname">search</label>
+              </li>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Solutions</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="../pages/profile.html">Profile</a></li>
         </ul>
     </nav>
+    <!-- //////////////////////////////////////////////////// -->
+    <div class="navbar">
+        <nav>
+          <ul>
+            </li>
+            <li><div>
+              <label for="originSelect">      origin:</label>
+            <select id="originSelect">
+              <option value="All Locations" selected >All </option>
+                        <option value="#" >na</option>
+            </select>
+          </div>
+            </li>
+            <li><div>
+              <label for="destinationSelect">     destination:</label>
+            <select id="destinationSelect">
+              <option value="All " selected >All </option>
+         <option value="#" >na</option>
+            </select>
+          </div>
+            </li>
+            <li><div>
+                <label for="airlineSelect">      airline:</label>
+              <select id="airlineSelect">
+                <option value="All " selected >All </option>
+           <option value="#" >na</option>
+              </select>
+            </div>
+              </li>
+              <li>
+                <input type="text" id="search" name="search">
+                <label for="lname">to</label>
+              </li>
+              <li>
+                <input type="text" id="search" name="search">
+                <label for="lname">from</label>
+              </li>
+          </ul>
+        </nav>
+      </div>
+    
     <section class="home">
         <div class="home-content"  >
             <h1>  Get up to <span class="highlight">20%</span>  off 
@@ -87,6 +130,14 @@
         </div>
         <section class="ads" id="ads"></section>
         <section class="flightCard" id="flightCard"></section>
+        <footer class="footer">
+            <div class="social">
+              <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+              <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+              <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+              <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+            </div>
+          </footer>
 
         <script src="../scripts/animation.js"></script>
         <script src="../scripts/landing.js"></script>

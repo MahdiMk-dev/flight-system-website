@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../styles/profile.css">
     <link rel="stylesheet" href="../styles/utilities.css">
     <link rel="stylesheet" href="../styles/colors.css">
-    <link rel="stylesheet" href="../styles/login.css">
     
     <title>Profile page</title>
 </head>
@@ -17,7 +16,7 @@
             <div class="header-container">
                 <h1 class="logo">Flight Booking</h1>
                 <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="../pages/landing.html?user_id="+user_id>Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Flights</a></li>
                     <li><a href="#">Contact</a></li>
@@ -25,38 +24,43 @@
             </div>
         </nav>
     </header>
-    <body>
 
+    <main class="flex column center full-width black-bg white-text">
         
-                <form action="" class="update_form">
-                    <h2 class="title">Update Info</h2>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Date of Birth 2024-12-24" id="dob">
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Phone Number" id="phone">
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="text" placeholder="nationality" id="nationality">
-                    </div>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="text" placeholder="passport number" id="passport_number">
-                    </div>
-                    <input type="submit" value="Update" class="btn solid" id="updateInfo">
-                </form>
+        <div id="passengerDetails" class="flex column half-width half-height passDetails-section">
+        </div>
+        <button id="edit-User-btn">Edit</button>
+        <button id="saveUserDetailsBtn">Save</button>
 
-</body>
 
+        <div id="emergencyContactDetails" class="flex column half-width half-height ECD-section">
+        </div>
+        <button id="edit-EC-btn">Edit</button>
+        <button id="saveECDetailsBtn">Save</button>
+        
+        <div id="upcoming-bookings" class="flex column half-width half-height bookings-section">
+            <!-- <h2>Upcoming Bookings</h2>
+            <div booking-id="1" class="flex row space-between">
+                <p>ID: <span id="booking-ID">1</span></p>
+                <p>Date: <span id="booking-Date">23/2/2024</span></p>
+                <p>Status: <span id="booking-Status">Upcoming</span></p>
+                <button id="cancel-btn">Cancel</button> -->
+            </div>
+        </div>
+
+        <div id="bookings-history" class="flex column half-width half-height bookings-section">
+            <!-- <h2>Bookings History</h2>
+            <div booking-id="1" class="flex row space-between">
+                <p>ID: <span id="booking-ID">1</span></p>
+                <p>Date: <span id="booking-Date">23/2/2024</span></p>
+                <p>Status: <span id="booking-Status">Upcoming</span></p>
+            </div> -->
+
+        </div>
    
     </main>
 
     <footer></footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../scripts/user.js"></script>
-    <script src="../scripts/profile.js"></script>
+]    <script src="../scripts/profile.js"></script>
 </body>
 </html>
