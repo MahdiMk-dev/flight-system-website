@@ -17,6 +17,7 @@ if($valid_token["message"]!="success"){
     exit; // Terminate the script
 }
 $user_id=$valid_token["user"];
+//var_dump($user_id);
 // Check if flight_id is provided in the request
 if (!isset($_GET['flight_id'])) {
     $response['status'] = 'error';
@@ -33,9 +34,9 @@ if (!isset($_GET['seat_number'])) {
 $flight_id = intval($_GET['flight_id']);
 $seat_number = intval($_GET['seat_number']);
 $price = intval($_GET['price']);
-
-$query = $mysqli->prepare('SELECT * from reservations  WHERE flight_id = ? and seat_number=?');
-$query->bind_param('ii', $flight_id,$seat_number);
+$status='canceled';
+$query = $mysqli->prepare('SELECT * from reservations  WHERE flight_id = ? and seat_number=? and status!=? ');
+$query->bind_param('iis', $flight_id,$seat_number,$status);
 $query->execute();
 $query->store_result();
 $num_rows = $query->num_rows;
@@ -59,7 +60,7 @@ if ($num_rows != 0) {
                 $response['status'] = 'No enough Credit';
             }
             else if($status!='active'){
-                $response['status'] = 'User Not Active Fill All info in your proifle to start booking.';
+                $response['status'] = 'User Not Active Fill All info in your profile to start booking.';
             }
         else{
         $query3 = $mysqli->prepare('INSERT INTO reservations (flight_id, user_id , seat_number) VALUES (?, ?, ?)');

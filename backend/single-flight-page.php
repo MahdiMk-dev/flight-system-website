@@ -44,7 +44,6 @@ $query->execute();
 $query->store_result();
 
 $num_rows = $query->num_rows;
-//var_dump($query);
 if ($num_rows == 0) {
     $response['status'] = 'no_flight_found';
 } else {

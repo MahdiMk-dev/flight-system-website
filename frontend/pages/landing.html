@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fligh System Website</title>
+    <title>Flight System Website</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../styles/landing.css">
@@ -18,13 +18,73 @@
             <div class="line3"></div>
         </div>
         <ul class="nav-links">
+            <li class="logo"><img src="../images/LOGO.png" alt=""></li>
+            <li>
+                <input type="text" id="search" name="search">
+                <label for="lname">search</label>
+              </li>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Solutions</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="../pages/profile.html">Profile</a></li>
         </ul>
     </nav>
+    <!-- //////////////////////////////////////////////////// -->
+    <div class="navbar">
+        <nav class="filter">
+          <ul class="filter1">
+            </li>
+            <li><div>
+              <label for="originSelect">origin:</label>
+            <select id="originSelect">
+                <option value="ALL">All</option>
+            </select>
+          </div>
+            </li>
+            <li><div>
+              <label for="destinationSelect">destination:</label>
+            <select id="destinationSelect">
+                  <option value="ALL">All</option>
+            </select>
+          </div>
+            </li>
+            <li><div>
+                <label for="airlineSelect">airline:</label>
+              <select id="airlineSelect">
+                  <option value="ALL">All</option>
+              </select>
+            </div>
+
+              </li>
+          </br>
+              <li>
+                <input type="date" id="departuredate" name="search">
+                <label for="Departure_date">Departure Date</label>
+              </li>
+              <li>
+
+                <input type="date" id="arrivaldate" name="search">
+                <label for="Arrival Date">Arrival Date</label>
+              </li>
+              <li>
+                   <button type="button" id="Applyfilter"></button>
+              </li>
+           
+                <label for="lname">to</label>
+                <input type="text" id="search" name="search">
+                
+              </li>
+              <li>
+                <label for="lname">from</label>
+
+                <input type="text" id="search" name="search">
+              </li>
+              <li><button id="filter" class="bt">filter</button></li>
+          </ul>
+       
+                
+              
+        </nav>
+      </div>
+   
     <section class="home">
         <div class="home-content"  >
             <h1>  Get up to <span class="highlight">20%</span>  off 
@@ -73,20 +133,22 @@
 
 
      <article id="card">
-            <section class="card" >
-              <div class="text-content">
-                <h3>Paris</h3>
-                <p>we are here to provide you with all your needs for your next trip.</p>  
-                <a href="#">Book now </a>
-              </div>
-              <div class="visual">
-                <img src="../images/4.jpg" alt="" />
-              </div>
-            </section> 
+
+
           </article>
         </div>
-        <section class="ads" id="ads"></section>
+        <article class="ads" id="ads">
+           <h2>Ads Section</h2>
+        </article>
         <section class="flightCard" id="flightCard"></section>
+        <footer class="footer">
+            <div class="social">
+              <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
+              <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+              <a href="#"><i class="fab fa-youtube fa-2x"></i></a>
+              <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+            </div>
+          </footer>
 
         <script src="../scripts/animation.js"></script>
         <script src="../scripts/landing.js"></script>

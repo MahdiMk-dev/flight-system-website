@@ -22,10 +22,11 @@ if ($num_rows == 0) {
         'passport_number' => $passport_number,
         'phone_number' => $phone_number
     );
+    $response['status'] = "success";
+$response['user'] = $user;
 }
 
 
-$response['status'] = "success";
-$response['user'] = $user;
+
 
 echo json_encode($response);

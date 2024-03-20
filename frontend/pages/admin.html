@@ -11,7 +11,7 @@
     <title>Admin Panel</title>
 </head>
 <body>
-  <div class="flex">
+  <div class="panel flex">
     <div class="panel-left flex column">
       <div class="logo">
         <img src="" alt="" class="logo-img"/>
@@ -29,7 +29,7 @@
         </a>
         <a href="#">
           <i class="uil uil-coins"></i>
-          <h3>Booking</h3>
+          <h3>Bookings</h3>
         </a>
         <a href="#">
           <i class="uil uil-comment"></i>
@@ -52,13 +52,13 @@
         <div class="card">
           <i class="uil uil-plane-departure"></i>
           <h4>Total Flights</h4>
-          <h3>249</h3>
+          <h3 class="nb-flights"></h3>
         </div>
 
         <div class="card">
           <i class="uil uil-user"></i>
           <h4>Users Number</h4>
-          <h3>24</h3>
+          <h3 class="users"></h3>
         </div>
 
         <div class="card">
@@ -82,26 +82,108 @@
               <th>Airplane</th>
               <th>Status</th>
               <th>price</th>
+              <th>From</th>
+              <th>To</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>1</td>
-              <td>2024-04-01 08:00:00</td>
-              <td>2024-04-01 10:00:00</td>
+              <td>2024-04-01 08:00</td>
+              <td>2024-04-01 10:00</td>
               <td>Boeing</td>
               <td>Pending</td>
               <td>500$</td>
+              <td>Beirut</td>
+              <td>London</td>
               <td>
-                <button class="edit-btn"><i class="uil uil-edit"></i></button>
-                <button class="cancel-btn"><i class="uil uil-trash-alt"></i></button>
+                <button class="btn edit-btn"><i class="uil uil-edit"></i></button>
+                <button class="btn cancel-btn"><i class="uil uil-trash-alt"></i></button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+
+      <div class="flights-table">
+        <h2>Bookings</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Booking Id</th>
+              <th>Seat #</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Airport</th>
+              <th>Payment Status</th>
+              <th>Passenger name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>122</td>
+              <td>Beirut</td>
+              <td>London</td>
+              <td>Rafic El Harriri</td>
+              <td>Pending</td>
+              <td>John</td>
+              <td>john@gmail.com</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>122</td>
+              <td>Beirut</td>
+              <td>London</td>
+              <td>Rafic El Harriri</td>
+              <td>Pending</td>
+              <td>John</td>
+              <td>john@gmail.com</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>122</td>
+              <td>Beirut</td>
+              <td>London</td>
+              <td>Rafic El Harriri</td>
+              <td>Pending</td>
+              <td>John</td>
+              <td>john@gmail.com</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="flights-table">
+        <h2>Coins Request</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Passenger Id</th>
+              <th>Passenger name</th>
+              <th>Email</th>
+              <th>Coins</th>
+              <th>Amount Requested</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>John</td>
+              <td>john@gmail.com</td>
+              <td>3</td>
+              <td>2000</td>
+              
+            </tr>
+          </tbody>
+        </table>
     </div>
   </div>
+  <script src="../scripts/admin-panel/revenue.js"></script>
+  <script src="../scripts/admin-panel/user.js"></script>
+  <script src="../scripts/admin-panel/flights.js"></script>
 </body>
 </html>

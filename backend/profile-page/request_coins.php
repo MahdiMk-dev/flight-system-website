@@ -1,7 +1,9 @@
 <?php
-include('../connection.php');
+/*include('../connection.php');
 include('../jwt_functions.php'); // Include JWT functions file
 require_once('../vendor/autoload.php');
+
+
 $headers=apache_request_headers();
 $token=validate_token_exist($headers);
 $response = array(); // Initialize response array
@@ -16,10 +18,11 @@ if($valid_token["message"]!="success"){
     echo json_encode($response);
     exit; // Terminate the script
 }
-$user_id=$valid_token["user"];
+$user_id=$valid_token["user"];*/
+$user_id=$_GET['user_id']; 
 if (isset($_POST['amount']) ) {
-        $amount = $_POST['amount'];
-        $query = $mysqli->prepare('INSERT INTO payment_request (user_id, amount ) VALUES (?, ?)');
+        $amount = $POST['amount'];
+        $query = $mysqli->prepare('INSERT INTO payment_requests (user_id, amount ) VALUES (?, ?)');
         $query->bind_param('ii', $user_id, $amount);
         $query->execute();
         $created_id = $mysqli->insert_id;
