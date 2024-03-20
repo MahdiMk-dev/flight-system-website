@@ -17,7 +17,7 @@
             <div class="header-container">
                <img  class="logo" src="../images/LOGO.png" alt="logo">
                 <ul class="nav-links">
-                    <li><a href="../pages/landing.html?user_id="+user_id>Home</a></li>
+                    <li><a href="../pages/landing.html">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Flights</a></li>
                     <li><a href="#">Contact</a></li>
@@ -42,7 +42,9 @@
         <button id="edit-EC-btn">Edit</button>
         <button id="saveECDetailsBtn">Save</button>
     </div>
-        <div id="upcoming-bookings" class="flex column half-width half-height border-black bookings-section">
+   
+        
+        <div id="upcoming-bookings" class="flex column half-width border-black half-height bookings-section">
             <!-- <h2>Upcoming Bookings</h2>
             <div booking-id="1" class="flex row space-between">
                 <p>ID: <span id="booking-ID">1</span></p>
@@ -79,6 +81,25 @@
             </div> -->
 
         </div>
+                <div id="coins" class="flex column half-width border-black half-height bookings-section">
+            <!-- <h2>Bookings History</h2>
+            <div booking-id="1" class="flex row space-between">
+                <p>ID: <span id="booking-ID">1</span></p>
+                <p>Date: <span id="booking-Date">23/2/2024</span></p>
+                <p>Status: <span id="booking-Status">Upcoming</span></p>
+            </div> -->
+
+        </div>
+
+        <div id="request-coins">
+            <h2>Request Coins</h2>
+
+<form id="coinRequestForm">
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" required>
+    <button type="submit" id="request">Request</button>
+</form>
+        </div>
    
     </main>
 
@@ -90,6 +111,6 @@
           <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
         </div>
       </footer>   
-       <script src="../scripts/profile.js"></script>
+    <script src="../scripts/profile.js"></script>
 </body>
 </html>
