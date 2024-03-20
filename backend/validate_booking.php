@@ -17,6 +17,7 @@ if($valid_token["message"]!="success"){
     exit; // Terminate the script
 }
 $user_id=$valid_token["user"];
+//var_dump($user_id);
 // Check if flight_id is provided in the request
 if (!isset($_GET['flight_id'])) {
     $response['status'] = 'error';
