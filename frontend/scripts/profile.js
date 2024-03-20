@@ -1,6 +1,5 @@
 
 
-document.addEventListener('DOMContentLoaded', function () {
     // Get references to letious elements in the DOM
 const bookingID = document.getElementById('booking-ID');
 const bookingDate = document.getElementById('booking-Date');
@@ -9,10 +8,11 @@ const bookingStatus = document.getElementById('booking-Status');
 const flightID = document.getElementById('flight-ID');
 const flightStatus = document.getElementById('flight-Status');
 
-
         // Function to load user details onto the page
     const loadUserInfoContent = (container, userId) => {
             // Fetch flights data using the user ID
+
+
     fetch('http://localhost/flight-system-website/backend/profile-page/view-info.php?user_id='+userId
     )
         .then(response => response.json())
@@ -28,8 +28,11 @@ const flightStatus = document.getElementById('flight-Status');
                 <p>Nationality: <span id="nationality">${data['user'].nationality}</span></p>
                 <p>Passport: <span id="passport">${data['user'].passport_number}</span></p>
                 <p>Phone: <span id="phone">${data['user'].phone_number}</span></p>
+                
 
             `;
+            console.log("hello World2")
+
                 const editUserBtn = document.createElement('button');
                 editUserBtn.textContent = 'Edit'; 
                 editUserBtn.id = 'edit-User-btn';
@@ -339,6 +342,7 @@ const flightStatus = document.getElementById('flight-Status');
                 const flightDetailsDiv = document.getElementById('card');
                 const CoinsConrtainer=document.getElementById('coins');
                 loadUserInfoContent(passengerDetailsContainer, user_id);
+                console.log("log")
                 loadECInfoContent(emergencyContactContainer, user_id);
                 loadUpcomingBookingsContent(upcomingBookingsContainer, user_id);
                 loadBookingsHistoryContent(bookingsHistoryContainer, user_id);
@@ -356,7 +360,6 @@ const flightStatus = document.getElementById('flight-Status');
 
                 
             
-});
 
 
 
