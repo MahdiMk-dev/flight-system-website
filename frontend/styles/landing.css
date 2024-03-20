@@ -70,6 +70,11 @@ nav{
  .hamburger{
     display: none;
  }
+ .filter{
+  display: flex;
+  align-items: center;
+ }
+
  
  /*Stying for small screens*/
  @media screen and (max-width: 800px){
