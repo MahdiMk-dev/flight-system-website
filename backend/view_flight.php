@@ -7,7 +7,7 @@ require_once('./vendor/autoload.php');
 $where_condition="";
 
 // Check if flight_id is provided in the request
-if (isset($_GET["filter"]) && count($_GET)!=0 ) {
+if (isset($_GET["filter"]) && count($_GET)!=0 && $_GET["filter"]!="") {
     $where_condition=" where ";
     $where_condition.=$_GET["filter"];
 }

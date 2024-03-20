@@ -25,7 +25,7 @@ if ($num_rows == 0) {
     $requests[] = $request;
 
     $response['status'] = "success";
-    $response['requests'] = $request;
+    $response['requests'] = $requests;
 }
 }
 

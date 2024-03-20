@@ -141,7 +141,7 @@ const flightStatus = document.getElementById('flight-Status');
     document.getElementById("request").addEventListener("click", function(){
         // Get the amount from the input field
         let amount = document.getElementById("amount").value;
-        console.log(amount);
+    
         const jwtToken = localStorage.getItem('jwtToken');
        fetch('http://localhost/flight-system-website/backend/profile-page/request_coins.php?amount='+amount, {
         method: 'GET',
@@ -164,7 +164,10 @@ const flightStatus = document.getElementById('flight-Status');
                 alert("Error: " + data.message);
             }
         })
-
+        .catch((error) => {
+            console.error('Error:', error);
+            alert("Error: " + error.message);
+        });
     });
 
     const loadECInfoContent = (container, userId) => {
