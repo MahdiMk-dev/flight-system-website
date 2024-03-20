@@ -115,14 +115,16 @@ const flightStatus = document.getElementById('flight-Status');
         .then(data => {
             console.log(data);
             // Handle the response
-            if (data.status === 'logged_in') {
+            if (data.status == 'succcess') {
+                alert("updated successfuly")
+                    location.reload();
             }
             else{
-
+                alert(data.status)
             }
         })
 
-    location.reload();
+
         
     });
             }else{
@@ -137,31 +139,25 @@ const flightStatus = document.getElementById('flight-Status');
         // Get the amount from the input field
         let amount = document.getElementById("amount").value;
     
-    
-        let formData = new FormData();
-        formData.append('amount', amount);
-    
-        // Fetch API address
-        fetch('http://localhost/flight-system-website/backend/profile-page/request_coins.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: formData,
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+        const jwtToken = localStorage.getItem('jwtToken');
+       fetch('http://localhost/flight-system-website/backend/profile-page/request_coins.php?amount='+amount, {
+        method: 'GET',
+        mode: 'cors', // Ensure CORS mode
+        headers: {
+              'Authorization': `Bearer ${jwtToken}`
             }
-            return response.json();
-        })
+    }
+    )
+        .then(response => response.json())
         .then(data => {
             // Handle response data here
             console.log(data);
+            alert(data)
             if (data.status === "success") {
                 alert("Amount requested successfully");
                 document.getElementById("coinRequestForm").reset(); // Reset the form
             } else {
+                window.location.href="http://localhost/flight-system-website/frontend/login.html"
                 alert("Error: " + data.message);
             }
         })
@@ -198,6 +194,46 @@ const flightStatus = document.getElementById('flight-Status');
                 })
         
     };
+           const loadCoinsRequest = (container, userId) => {
+        fetch('http://localhost/flight-system-website/backend/profile-page/list_coin_request.php?user_id='+userId
+    )
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                console.log("success")
+                console.log(data)
+                container.innerHTML = `<h2>Coins Requests</h2>`;
+                if (Array.isArray( data['requests'])) {
+                    // If it's already an array, return it as is
+                    requests= data['requests']
+                } else {
+                    // If it's not an array, create a new array with the value as its single element
+                    requests= [ data['requests']];
+                }
+            requests.forEach((request, index) => {
+                const bookingContainer = document.createElement('div');
+                bookingContainer.classList.add('flex', 'row', 'space-between');
+                bookingContainer.setAttribute('booking-id', request.id );
+    
+                bookingContainer.innerHTML = `
+                    <p>ID: <span id="booking-ID-${request.id}">${request.id}</span></p>
+                    <p>Amount: <span id="booking-Date-${request.id}">${request.amount}</span></p>
+                    <p>Status: <span id="booking-Status-${request.id}">${request.status}</span></p>
+                `;
+                container.appendChild(bookingContainer)
+                 
+    })
+    }
+            else{
+                    container.innerHTML ='<h2>Coins Requests</h2><h4>'+data.status+'</h4>'
+                }
+                })
+      
+
+    };
+
+
+
        const loadUpcomingBookingsContent = (container, userId) => {
         fetch('http://localhost/flight-system-website/backend/profile-page/view-flights.php?user_id='+userId
     )
@@ -273,16 +309,7 @@ const flightStatus = document.getElementById('flight-Status');
                     <p>ID: <span>${flight.id}</span></p>
                     <p>Date: <span>${flight.date}</span></p>
                     <p>Status: <span>${flight.status}</span></p>
-                    <button id="reviewButton" style="display: none;">Add Review</button>
-
-                    
                 `;
-                let reviewButton = document.getElementById("reviewButton");
-
-                if (flightStatus.textContent.trim().toLowerCase() === "completed") {
-                    // If status is "completed", show the review button
-                    reviewButton.style.display = "block";
-                }
     
                 container.appendChild(bookingContainer);
             })
@@ -310,10 +337,12 @@ const flightStatus = document.getElementById('flight-Status');
                 const upcomingBookingsContainer = document.getElementById('upcoming-bookings');
                 const bookingsHistoryContainer = document.getElementById('bookings-history');
                 const flightDetailsDiv = document.getElementById('card');
+                const CoinsConrtainer=document.getElementById('coins');
                 loadUserInfoContent(passengerDetailsContainer, user_id);
                 loadECInfoContent(emergencyContactContainer, user_id);
                 loadUpcomingBookingsContent(upcomingBookingsContainer, user_id);
                 loadBookingsHistoryContent(bookingsHistoryContainer, user_id);
+                loadCoinsRequest(CoinsConrtainer,user_id)
 
 
 

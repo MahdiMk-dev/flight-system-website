@@ -2,13 +2,13 @@
     use \Firebase\JWT\JWT;
     use Firebase\JWT\Key;
     use \Firebase\JWT\ExpiredException;
-    require_once('./vendor/autoload.php'); // 
+    require_once('vendor/autoload.php'); // 
 
-    require_once('./config.php');
+    require_once('config.php');
     function generateToken($user_id) {
     $secretKey  = secretKey;
     $issuedAt   = new DateTimeImmutable();
-    $expire     = $issuedAt->modify('+120 minutes')->getTimestamp();      // Add 60 seconds
+    $expire     = $issuedAt->modify('+120 minutes')->getTimestamp();      // Add 2 hours
     $serverName = "http://localhost/flight-system-website/";
     $username   = $user_id;                                           // Retrieved from filtered POST data
 

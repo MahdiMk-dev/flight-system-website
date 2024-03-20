@@ -58,8 +58,12 @@ document.addEventListener('DOMContentLoaded', function () {
                             alert('Flight booked successfully! Check your booked flight details in your profile page.');
                    
                         }
-                        else 
+                        else {
                             alert(data.status)
+                        
+                if(data.status="User Not Active Fill All info in your profile to start booking.")
+                    window.location.href="http://localhost/flight-system-website/frontend/pages/profile.html"
+                   }
                     })
                     }
                     else{
@@ -68,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             } else {
                 alert(data.status)
+
                 if (data.status!="error" && data.status!="no_flight_found")
                 window.location.href="http://localhost/flight-system-website/frontend/pages/login.html"
                 else

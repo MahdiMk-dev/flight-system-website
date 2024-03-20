@@ -1,33 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
      // Get input values
-var filter_condition="";
-  const originValue = document.getElementById('originSelect').value;
-  const destinationValue = document.getElementById('destinationSelect').value;
-  const airlineValue = document.getElementById('airlineSelect').value;
-  const toDateValue = document.getElementById('departuredate').value;
-  const fromDateValue = document.getElementById('arrivaldate').value;
-  if (originValue) 
-    filter_condition+=" departure_airport_id='"+originValue+" and ";
-    if ( destinationValue ) 
-    filter_condition+=" arrival_airport_id='"+destinationValue+" and "
-    if (airlineValue ) 
-    filter_condition+=" airline='"+airlineValue+" and "
-    if ( toDateValue ) {
-        const parts = toDateValue.split('-');
 
-      // Rearrange the parts to the desired format (e.g., DD/MM/YYYY)
-      const toDateValue = `${parts[0]}-${parts[1]}-${parts[2]}`;
-    filter_condition+=" departure_date='"+toDateValue+" and "
-    }
-    if (fromDateValue) {
-                const parts = fromDateValue.split('-');
 
-      // Rearrange the parts to the desired format (e.g., DD/MM/YYYY)
-      const fromDateValue = `${parts[0]}-${parts[1]}-${parts[2]}`;
-    filter_condition+=" arrival_date='"+fromDateValue+" and "
-    }
-    var formData = new FormData();
-        formData.append('filter', filter_condition);
     // Fetch flights data using the user ID
         fetch('http://localhost/flight-system-website/backend/get_airports.php', {
         method: 'GET',
@@ -74,9 +48,8 @@ var filter_condition="";
             }
         })
     fetch('http://localhost/flight-system-website/backend/view_flight.php', {
-        method: 'POST',
+        method: 'GET',
         mode: 'cors', // Ensure CORS mode
-        body: formData,
         headers: {
           'Content-Type': 'application/json'
         }
@@ -84,12 +57,13 @@ var filter_condition="";
     )
         .then(response => response.json())
         .then(data => {
-            if (data.status === 'success') {
+            const flightDetailsDiv = document.getElementById('card');
+                const adssection=document.getElementById('ads');
+            if (data.status_flights === 'success') {
                 console.log("success")
                 const flights = data.flights;
 
-                const flightDetailsDiv = document.getElementById('card');
-                const adssection=document.getElementById('ads');
+                
                 flights.forEach((flight, index) => {
                      const card = document.createElement('section');
                     card.classList.add('card');
@@ -97,19 +71,27 @@ var filter_condition="";
                     flightCard.classList.add('text-content');
                     flightCard.innerHTML = `
                         <h3>Flight ${flight.id }</h3>
+                        <p><strong>Status:</strong> ${flight.status}</p>
                         <p><strong>Price:</strong> $${flight.price}</p>
                         <p><strong>Departure:</strong> ${flight.departure_date} ${flight.departure_time} - ${flight.departure_airport_id}</p>
                         <p><strong>Airline:</strong> ${flight.airline}</p>
                         <p><strong>Airplane Model:</strong> ${flight.airplane_id}</p>
                         <p><strong>Passengers:</strong> ${flight.passengers}</p>
                         <p><strong>Rating:</strong> ${flight.average_rating}</p>
-                        <p><strong>Arrival:</strong> ${flight.arrival_date} ${flight.arrival_time} - ${flight.arrival_airport_id}</p>
-                         <a href=http://localhost/flight-system-website/frontend/pages/view-single-flight.html?flight_id=${flight.id} ">Book now </a>
-                    `;
+                        <p><strong>Arrival:</strong> ${flight.arrival_date} ${flight.arrival_time} - ${flight.arrival_airport_id}</p>`
+                        if(flight.status=='Pending')
+                        flightCard.innerHTML +=  `<a href=http://localhost/flight-system-website/frontend/pages/view-single-flight.html?flight_id=${flight.id} ">Book now </a>`
+                    ;
                     card.appendChild(flightCard)
                     flightDetailsDiv.appendChild(card);
 
                 })
+                }else{
+                    const card = document.createElement('section');
+                    card.innerHTML="No Flights"
+                    flightDetailsDiv.appendChild(card);
+                }
+                if(data.ads_status=='success'){
                 ads=data.ads;
                 ads.forEach((ad, index) => {
                      const card = document.createElement('section');
@@ -131,9 +113,164 @@ var filter_condition="";
                     adssection.appendChild(card);
 
                 })
-            }else{
-                    alert(data.status)
+            }
+            else{
+                    const card = document.createElement('section');
+                    card.innerHTML="No Ads"
+                    adssection.appendChild(card);
                 }
                 })
+
+
+function  input_values(){
+var filter_condition="";
+  const originValuev = document.getElementById('originSelect').value;
+  const destinationValuev = document.getElementById('destinationSelect').value;
+  const airlineValuev = document.getElementById('airlineSelect').value;
+  const toDateValuev = document.getElementById('departuredate').value;
+  console.log(toDateValuev)
+  const fromDateValuev = document.getElementById('arrivaldate').value;
+  if (originValuev && originValuev!='ALL') 
+    filter_condition+=" depart_airport.name='"+originValuev+"' and ";
+    if ( destinationValuev  && destinationValuev!='ALL') 
+    filter_condition+=" arrival_airport.name='"+destinationValuev+"' and "
+    if (airlineValuev && airlineValuev!='ALL') 
+    filter_condition+=" airlines.name='"+airlineValuev+"' and "
+    if ( toDateValuev ) {
+
+    filter_condition+=" departure_date='"+toDateValuev+"' and "
+    }
+    if (fromDateValuev) {
+
+    filter_condition+=" arrival_date='"+fromDateValuev+"' and "
+    }
+return filter_condition
+}
+function apply_filter(filter_condition){
+    console.log(filter_condition)
+    var formData = new FormData();
+        formData.append('filter', filter_condition);
+        const postData = {
+          filter: filter_condition,
+        };
+    console.log(postData)
+   fetch('http://localhost/flight-system-website/backend/view_flight.php?filter='+filter_condition, {
+        method: 'GET',
+        mode: 'cors', // Ensure CORS mode
+        headers: {
+          'Content-Type': 'application/json'
+        }
+    }
+    )
+        .then(response => response.json())
+        .then(data => {
+            const flightDetailsDiv = document.getElementById('card');
+            flightDetailsDiv.innerHTML="";
+            const adssection=document.getElementById('ads');
+            adssection.innerHTML="<h2>Ads Section</h2>"
+            if (data.status_flights === 'success') {
+                console.log("success")
+                const flights = data.flights;
+
+                flights.forEach((flight, index) => {
+                     const card = document.createElement('section');
+                    card.classList.add('card');
+                    const flightCard = document.createElement('div');
+                    flightCard.classList.add('text-content');
+                    flightCard.innerHTML = `
+                        <h3>Flight ${flight.id }</h3>
+                        <p><strong>Status:</strong> ${flight.status}</p>
+                        <p><strong>Price:</strong> $${flight.price}</p>
+                        <p><strong>Departure:</strong> ${flight.departure_date} ${flight.departure_time} - ${flight.departure_airport_id}</p>
+                        <p><strong>Airline:</strong> ${flight.airline}</p>
+                        <p><strong>Airplane Model:</strong> ${flight.airplane_id}</p>
+                        <p><strong>Passengers:</strong> ${flight.passengers}</p>
+                        <p><strong>Rating:</strong> ${flight.average_rating}</p>
+                        <p><strong>Arrival:</strong> ${flight.arrival_date} ${flight.arrival_time} - ${flight.arrival_airport_id}</p>`
+                        if(flight.status=='Pending')
+                        flightCard.innerHTML +=  `<a href=http://localhost/flight-system-website/frontend/pages/view-single-flight.html?flight_id=${flight.id} ">Book now </a>`
+                    ;
+                    card.appendChild(flightCard)
+                    flightDetailsDiv.appendChild(card);
+
+                })
+                }else{
+                    const card = document.createElement('section');
+                    card.innerHTML="No Flights"
+                    flightDetailsDiv.appendChild(card);
+                }
+                if(data.ads_status=='success'){
+                ads=data.ads;
+                ads.forEach((ad, index) => {
+                     const card = document.createElement('section');
+                    card.classList.add('card');
+                    const flightCard = document.createElement('div');
+                    flightCard.classList.add('text-content');
+                    flightCard.innerHTML = `
+                        <h3>Flight ${ad.id }</h3>
+                        <p><strong>Price:</strong> $${ad.price}</p>
+                        <p><strong>Departure:</strong> ${ad.departure_date} ${ad.departure_time} - ${ad.departure_airport_id}</p>
+                        <p><strong>Airline:</strong> ${ad.airline}</p>
+                        <p><strong>Airplane Model:</strong> ${ad.airplane_id}</p>
+                        <p><strong>Passengers:</strong> ${ad.passengers}</p>
+                        <p><strong>Rating:</strong> ${ad.average_rating}</p>
+                        <p><strong>Arrival:</strong> ${ad.arrival_date} ${ad.arrival_time} - ${ad.arrival_airport_id}</p>
+                         <a href=http://localhost/flight-system-website/frontend/pages/view-single-flight.html?flight_id=${ad.id} ">Book now </a>
+                    `;
+                    card.appendChild(flightCard)
+                    adssection.appendChild(card);
+
+                })
+            }
+            else{
+                    const card = document.createElement('section');
+                    card.innerHTML="No Ads"
+                    adssection.appendChild(card);
+                }
+                })
+    }
+  const originValue = document.getElementById('originSelect');
+  const destinationValue = document.getElementById('destinationSelect');
+  const airlineValue = document.getElementById('airlineSelect');
+  const toDateValue = document.getElementById('departuredate');
+  const fromDateValue = document.getElementById('arrivaldate');
+// Add event listener for input change
+originValue.addEventListener("change", function(event) {
+
+    console.log("change")
+
+let filters=input_values();
+console.log(filters)
+apply_filter(filters)
+
+});
+destinationValue.addEventListener("change", function(event) {
+    console.log("change")
+
+let filters=input_values();
+console.log(filters)
+apply_filter(filters)
+});
+airlineValue.addEventListener("change", function(event) {
+    console.log("change")
+
+let filters=input_values();
+console.log(filters)
+apply_filter(filters)
+});
+toDateValue.addEventListener("change", function(event) {
+    console.log("change")
+
+let filters=input_values();
+console.log(filters)
+apply_filter(filters)
+});
+fromDateValue.addEventListener("change", function(event) {
+    console.log("change")
+
+let filters=input_values();
+console.log(filters)
+apply_filter(filters)
+});
 
 });

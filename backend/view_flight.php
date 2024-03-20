@@ -7,9 +7,9 @@ require_once('./vendor/autoload.php');
 $where_condition="";
 
 // Check if flight_id is provided in the request
-if (isset($_POST["filter"]) && count($_POST)!=0 ) {
+if (isset($_GET["filter"]) && count($_GET)!=0 ) {
     $where_condition=" where ";
-    $where_condition.=$_POST["filter"];
+    $where_condition.=$_GET["filter"];
 }
 $lastOccurrence = strrpos($where_condition, "and");
 
@@ -21,8 +21,8 @@ if ($lastOccurrence !== false) {
 
 
 
-
 $sql = 'SELECT flights.id as id,
+flights.status as status,
     flights.price as price,
     depart_airport.name as departure_airport_id,
     arrival_airport.name as arrival_airport_id,
@@ -37,7 +37,7 @@ $sql = 'SELECT flights.id as id,
     airlines.name as airline
     FROM `flights` inner join airplanes on airplane_id=airplanes.id inner join airplane_models on airplanes.model_id=airplane_models.id inner join airports as depart_airport on depart_airport.id=flights.departure_airport_id inner join airports as arrival_airport on arrival_airport.id=flights.arrival_airport_id inner join airlines on airlines.id=airplanes.airline_id 
     left join flight_reviews on flight_reviews.id=flights.id 
-    left join reservations on reservations.flight_id=flights.id '.$where_condition."group by id,
+    left join reservations on reservations.flight_id=flights.id  '.$where_condition." group by id,
         price,
         departure_airport_id,
         arrival_airport_id,
@@ -47,6 +47,7 @@ $sql = 'SELECT flights.id as id,
         arrival_time,
         airplane_id,
         capacity,airline";
+     
 
 $result = $mysqli->query($sql);
 
@@ -68,15 +69,16 @@ if ($result) {
             'capacity'=>$row["capacity"],
             'airline'=>$row["airline"],
             'average_rating'=>$row["average_rating"],
-            'passengers'=>$row["passengers"]
+            'passengers'=>$row["passengers"],
+            'status' => $row["status"],
         ];
         $flights[] = $flight;
     }
 
-    $response['status'] = "success";
+    $response['status_flights'] = "success";
     $response['flights'] = $flights;
 }
-else $response['status'] = "No Flights";
+else $response['status_flights'] = "No Flights";
 
 
 
@@ -113,7 +115,7 @@ if ($result) {
     FROM `flights` inner join airplanes on airplane_id=airplanes.id inner join airplane_models on airplanes.model_id=airplane_models.id inner join airports as depart_airport on depart_airport.id=flights.departure_airport_id inner join airports as arrival_airport on arrival_airport.id=flights.arrival_airport_id inner join airlines on airlines.id=airplanes.airline_id 
     left join flight_reviews on flight_reviews.id=flights.id 
     left join reservations on reservations.flight_id=flights.id 
-    where airlines.name='".$row["airline"]."' and flights.status='Pending'
+    where airlines.name='".$row["airline"]."' and flights.status='Pending' 
     group by id,
         price,
         departure_airport_id,
@@ -147,8 +149,10 @@ if ($result) {
     }
 
     $response['ads'] = $ads;
+    $response['ads_status'] = "success";
     }
-
+    else
+ $response['ads_status'] = "No Ads";
 
 echo json_encode($response);
 ?>
