@@ -256,6 +256,7 @@ const flightStatus = document.getElementById('flight-Status');
                     <p>Date: <span id="booking-Date-${flight.id}">${flight.date}</span></p>
                     <p>Status: <span id="booking-Status-${flight.id}">${flight.status}</span></p>
                     <button class="cancel-btn" id="${flight.id}"">Cancel</button>
+
                 `;
                 container.appendChild(bookingContainer)
     
@@ -296,33 +297,33 @@ const flightStatus = document.getElementById('flight-Status');
       
 
     };
-        const loadBookingsHistoryContent = (container, userId) => {
-                fetch('http://localhost/flight-system-website/backend/profile-page/view-history-flights.php?user_id='+userId
-    )
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                console.log("success")
-                console.log(data)
-                container.innerHTML = `<h2>Bookings History</h2>`;
-            data['flights'].forEach((flight, index) => {
-                const bookingContainer = document.createElement('div');
-                bookingContainer.classList.add('flex', 'row', 'space-between');
-                bookingContainer.innerHTML = `
-                    <p>ID: <span>${flight.id}</span></p>
-                    <p>Date: <span>${flight.date}</span></p>
-                    <p>Status: <span>${flight.status}</span></p>
-                `;
-    
-                container.appendChild(bookingContainer);
-            })
-        }
-        else{
-                    container.innerHTML ='<h2>Bookings History</h2><h4>'+data.status+'</h4>'
+    const loadBookingsHistoryContent = (container, userId) => {
+        fetch('http://localhost/flight-system-website/backend/profile-page/view-history-flights.php?user_id=' + userId)
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    console.log("success")
+                    console.log(data)
+                    container.innerHTML = `<h2>Bookings History</h2>`;
+                    data['flights'].forEach((flight, index) => {
+                        const bookingContainer = document.createElement('div');
+                        bookingContainer.classList.add('flex', 'row', 'space-between');
+                        bookingContainer.innerHTML = `
+                            <p>ID: <span>${flight.id}</span></p>
+                            <p>Date: <span>${flight.date}</span></p>
+                            <p>Status: <span>${flight.status}</span></p>`;
+                        if (flight.status == "completed") {
+                            bookingContainer.innerHTML += `
+                                <button class="review-btn" id="${flight.id}">Review</button>`;
+                        }
+                        container.appendChild(bookingContainer);
+                    });
+                } else {
+                    container.innerHTML = '<h2>Bookings History</h2><h4>' + data.status + '</h4>';
                 }
-    })
-
+            });
     };
+    
 
     const jwtToken = localStorage.getItem('jwtToken');
     // Fetch flights data using the user ID
