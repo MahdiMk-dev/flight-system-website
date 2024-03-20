@@ -1,7 +1,7 @@
 <?php
-include('../connection.php');
-include('../jwt_functions.php'); // Include JWT functions file
-require_once('../vendor/autoload.php');
+include('./connection.php');
+include('./jwt_functions.php'); // Include JWT functions file
+require_once('./vendor/autoload.php');
 
 
 $headers=apache_request_headers();
@@ -19,8 +19,8 @@ if($valid_token["message"]!="success"){
     exit; // Terminate the script
 }
 $user_id=$valid_token["user"];
-if (isset($_GET['amount']) ) {
-        $amount = $_GET['amount'];
+if (isset($_POST['amount']) ) {
+        $amount = $_POST['amount'];
         $query = $mysqli->prepare('INSERT INTO payment_requests (user_id, amount ) VALUES (?, ?)');
         $query->bind_param('ii', $user_id, $amount);
         $query->execute();

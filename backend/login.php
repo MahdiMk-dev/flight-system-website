@@ -1,6 +1,6 @@
 <?php
     include('connection.php');
-    include('jwt_functions.php'); // Include JWT functions file
+    include('./jwt_functions.php'); // Include JWT functions file
 
     $email = $_POST['email'];
     $password = $_POST['password'];

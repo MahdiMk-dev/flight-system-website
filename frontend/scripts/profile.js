@@ -140,32 +140,43 @@ const flightStatus = document.getElementById('flight-Status');
 
     document.getElementById("request").addEventListener("click", function(){
         // Get the amount from the input field
+        alert("hi")
         let amount = document.getElementById("amount").value;
-        console.log(amount);
-        const jwtToken = localStorage.getItem('jwtToken');
-       fetch('http://localhost/flight-system-website/backend/profile-page/request_coins.php?amount='+amount, {
-        method: 'GET',
-        mode: 'cors', // Ensure CORS mode
+        var formData = new FormData();
+        formData.append('amount', amount);
+        const jwtTokenn = localStorage.getItem('jwtToken');
+       fetch('http://localhost/flight-system-website/backend/request_coins.php', {
+        method: 'POST',
+        //mode: 'cors', // Ensure CORS mode
+        body:formData,
         headers: {
-              'Authorization': `Bearer ${jwtToken}`
-            }
+              'Authorization': `Bearer ${jwtTokenn}`
+            },
+            
+        body:formData,
+
     }
     )
         .then(response => response.json())
         .then(data => {
+            alert("hi")
             // Handle response data here
             console.log(data);
             alert(data)
-            if (data.status === "success") {
+            if (data.status == "success") {
                 alert("Amount requested successfully");
-                document.getElementById("coinRequestForm").reset(); // Reset the form
+                //document.getElementById("coinRequestForm").reset(); // Reset the form
             } else {
                 window.location.href="http://localhost/flight-system-website/frontend/login.html"
                 alert("Error: " + data.message);
             }
         })
-
-    });
+        .catch((error) => {
+            console.error('Error:', error);
+            alert("Error: " + error.message);
+        });
+    })
+    
 
     const loadECInfoContent = (container, userId) => {
             // Fetch flights data using the user ID
