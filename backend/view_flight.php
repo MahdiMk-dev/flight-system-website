@@ -36,7 +36,7 @@ $sql = 'SELECT flights.id as id,
     count(reservations.id) as passengers,
     airlines.name as airline
     FROM `flights` inner join airplanes on airplane_id=airplanes.id inner join airplane_models on airplanes.model_id=airplane_models.id inner join airports as depart_airport on depart_airport.id=flights.departure_airport_id inner join airports as arrival_airport on arrival_airport.id=flights.arrival_airport_id inner join airlines on airlines.id=airplanes.airline_id 
-    left join flight_review on flight_review.id=flights.id 
+    left join flight_reviews on flight_reviews.id=flights.id 
     left join reservations on reservations.flight_id=flights.id '.$where_condition."group by id,
         price,
         departure_airport_id,
@@ -87,7 +87,7 @@ $sql="SELECT
     avg(rating)as average_rating,
     airlines.name as airline
     FROM `flights` inner join airplanes on airplane_id=airplanes.id inner join airplane_models on airplanes.model_id=airplane_models.id inner join airports as depart_airport on depart_airport.id=flights.departure_airport_id inner join airports as arrival_airport on arrival_airport.id=flights.arrival_airport_id inner join airlines on airlines.id=airplanes.airline_id 
-    inner join flight_review on flight_review.id=flights.id
+    inner join flight_reviews on flight_reviews.id=flights.id
     group by 
 airline order by average_rating desc ";
 $result = $mysqli->query($sql);
@@ -111,7 +111,7 @@ if ($result) {
     count(reservations.id) as passengers,
     airlines.name as airline
     FROM `flights` inner join airplanes on airplane_id=airplanes.id inner join airplane_models on airplanes.model_id=airplane_models.id inner join airports as depart_airport on depart_airport.id=flights.departure_airport_id inner join airports as arrival_airport on arrival_airport.id=flights.arrival_airport_id inner join airlines on airlines.id=airplanes.airline_id 
-    left join flight_review on flight_review.id=flights.id 
+    left join flight_reviews on flight_reviews.id=flights.id 
     left join reservations on reservations.flight_id=flights.id 
     where airlines.name='".$row["airline"]."' and flights.status='Pending'
     group by id,

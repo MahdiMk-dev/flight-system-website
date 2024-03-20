@@ -273,7 +273,16 @@ const flightStatus = document.getElementById('flight-Status');
                     <p>ID: <span>${flight.id}</span></p>
                     <p>Date: <span>${flight.date}</span></p>
                     <p>Status: <span>${flight.status}</span></p>
+                    <button id="reviewButton" style="display: none;">Add Review</button>
+
+                    
                 `;
+                let reviewButton = document.getElementById("reviewButton");
+
+                if (flightStatus.textContent.trim().toLowerCase() === "completed") {
+                    // If status is "completed", show the review button
+                    reviewButton.style.display = "block";
+                }
     
                 container.appendChild(bookingContainer);
             })
