@@ -1,5 +1,5 @@
 <?php
-/*include('../connection.php');
+include('../connection.php');
 include('../jwt_functions.php'); // Include JWT functions file
 require_once('../vendor/autoload.php');
 
@@ -18,10 +18,9 @@ if($valid_token["message"]!="success"){
     echo json_encode($response);
     exit; // Terminate the script
 }
-$user_id=$valid_token["user"];*/
-$user_id=$_GET['user_id']; 
-if (isset($_POST['amount']) ) {
-        $amount = $POST['amount'];
+$user_id=$valid_token["user"];
+if (isset($_GET['amount']) ) {
+        $amount = $_GET['amount'];
         $query = $mysqli->prepare('INSERT INTO payment_requests (user_id, amount ) VALUES (?, ?)');
         $query->bind_param('ii', $user_id, $amount);
         $query->execute();

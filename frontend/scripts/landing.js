@@ -123,7 +123,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function  input_values(){
-var filter_condition="";
+let filter_condition="";
+  const price = document.getElementById('maximum').value;
+
   const originValuev = document.getElementById('originSelect').value;
   const destinationValuev = document.getElementById('destinationSelect').value;
   const airlineValuev = document.getElementById('airlineSelect').value;
@@ -140,6 +142,10 @@ var filter_condition="";
 
     filter_condition+=" departure_date='"+toDateValuev+"' and "
     }
+    if ( price ) {
+
+        filter_condition+=" price="+price+" and "
+        }
     if (fromDateValuev) {
 
     filter_condition+=" arrival_date='"+fromDateValuev+"' and "
@@ -148,7 +154,7 @@ return filter_condition
 }
 function apply_filter(filter_condition){
     console.log(filter_condition)
-    var formData = new FormData();
+    let formData = new FormData();
         formData.append('filter', filter_condition);
         const postData = {
           filter: filter_condition,
@@ -234,8 +240,19 @@ function apply_filter(filter_condition){
   const airlineValue = document.getElementById('airlineSelect');
   const toDateValue = document.getElementById('departuredate');
   const fromDateValue = document.getElementById('arrivaldate');
+  const high_price = document.getElementById('maximum');
+
 // Add event listener for input change
 originValue.addEventListener("change", function(event) {
+
+    console.log("change")
+
+let filters=input_values();
+console.log(filters)
+apply_filter(filters)
+
+});
+high_price.addEventListener("change", function(event) {
 
     console.log("change")
 

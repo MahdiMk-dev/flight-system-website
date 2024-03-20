@@ -355,6 +355,7 @@ const flightStatus = document.getElementById('flight-Status');
 
             }else{
                     alert(data.status)
+                    window,location.href="http://localhost/flight-system-website/frontend/pages/login.html"
                 }
                 })
 
