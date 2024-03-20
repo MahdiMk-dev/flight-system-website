@@ -4,6 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
         let email = document.getElementById('signinEmail').value;
         let password = document.getElementById('signinPassword').value;
 
+        // Check if the username and password are "admin"
+        if (email === 'admin' && password === 'admin') {
+            // Redirect to admin page
+            window.location.href = './admin.html';
+            return; // Exit the function
+        }
+
         // Prepare data to be sent in the request body
         var formData = new FormData();
         formData.append('email', email);

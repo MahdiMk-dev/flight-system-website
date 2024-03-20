@@ -6,7 +6,7 @@
    
 }
 body{
-    background: linear-gradient(to bottom, #4481EB, #D2EBF5);
+    background: linear-gradient(to left, #4481EB, #D2EBF5);
     height: 100vh;
 }
 nav{
@@ -147,7 +147,7 @@ nav{
  
 section.card {
     background: #D2EBF5;
-    /* background: -webkit-linear-gradient(to right, #D2EBF5, #4481EB);  */
+    background: -webkit-linear-gradient(to right, #D2EBF5, #4481EB); 
     background: linear-gradient(to right, #4481EB, #D2EBF5);
     border-radius: 24px 24px 24px 48px;
     padding: 48px 48px 48px 308px;
@@ -156,6 +156,7 @@ section.card {
     min-width: 640px;
     gap: 20px;
     display: flex;
+    margin-bottom: 40px;
     flex-direction: row;
     align-self: flex-start;
     position: relative;
@@ -186,7 +187,7 @@ section.card {
     transition: 400ms all;
   }
   section.card .text-content a:hover {
-    background: #051c5e;
+    background: #4481EB;
     color: white;
   }
   section.card .visual {
@@ -312,7 +313,7 @@ section.card {
     margin-top: 30px;
     border-radius: 8px;
     font-size: 19px;
-    color: #081b29;
+    color: #404040;
     font-weight: 600;
     letter-spacing: 1px;
     z-index: 1;
@@ -331,7 +332,7 @@ section.card {
     left: 0;
     width: 0%;
     height: 100%;
-    background: #081b29;
+    background: #4481EB;
     z-index: -1;
     transition: .5s;   
 }
@@ -353,7 +354,7 @@ section.card {
     align-items: center;
     gap:1.5rem;
     padding:2rem 0;
-    color: #D2EBF5;
+    color: #404040;
 }
 
 .icons-container .icons i{
@@ -404,10 +405,11 @@ section.card {
     color: #fff;
     opacity: 0.8;
     width: 100%;
-    height: 70px;
+    height: 100px;
     position: fixed;
     top: 40px;
     padding: 0 35px;
+    z-index: 12;
   }
   
   .navbar a {
@@ -521,4 +523,10 @@ section.card {
       padding: 10px 20px;
       border-bottom: 1px solid #D2EBF5;
     }
+}
+.Card{
+    padding: 10px;
+    display: flex;
+    margin-bottom: 10px;
+    gap: 25px;
 }
