@@ -1,7 +1,7 @@
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Get references to various elements in the DOM
+    // Get references to letious elements in the DOM
 const bookingID = document.getElementById('booking-ID');
 const bookingDate = document.getElementById('booking-Date');
 const bookingStatus = document.getElementById('booking-Status');
@@ -99,7 +99,7 @@ const flightStatus = document.getElementById('flight-Status');
                 alert(`Please fill in the following fields: ${emptyFields.join(', ')}`);
                 return;
             }
-            var formData = new FormData();
+            let formData = new FormData();
         formData.append('username', updatedUsername);
         formData.append('email', updatedEmail);
         formData.append('dob', updatedDob);
@@ -131,6 +131,47 @@ const flightStatus = document.getElementById('flight-Status');
                 })
         
     };
+    //request coins
+
+    document.getElementById("request").addEventListener("click", function(){
+        // Get the amount from the input field
+        let amount = document.getElementById("amount").value;
+    
+        // Create a data object to send with the request
+        let data = {
+            amount: amount
+        };
+    
+        // Fetch API address
+        fetch('http://localhost/flight-system-website/backend/profile-page/request_coins.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Handle response data here
+            console.log(data);
+            if (data.status === "success") {
+                alert("Amount requested successfully");
+                document.getElementById("coinRequestForm").reset(); // Reset the form
+            } else {
+                alert("Error: " + data.message);
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert("Error: " + error.message);
+        });
+    });
+
     const loadECInfoContent = (container, userId) => {
             // Fetch flights data using the user ID
     fetch('http://localhost/flight-system-website/backend/profile-page/view-emergency-contacts.php?user_id='+userId
@@ -184,7 +225,7 @@ const flightStatus = document.getElementById('flight-Status');
                 const cancelButton = bookingContainer.querySelector('.cancel-btn');
                 cancelButton.addEventListener('click', () => {
                     const buttonId = event.target.id;
-        var formData = new FormData();
+        let formData = new FormData();
         formData.append('booking_id', buttonId);
         formData.append('user_id', userId);
             fetch('http://localhost/flight-system-website/backend/profile-page/cancel_reservation.php', {
@@ -274,6 +315,9 @@ const flightStatus = document.getElementById('flight-Status');
                     alert(data.status)
                 }
                 })
+
+
+                
             
 });
 

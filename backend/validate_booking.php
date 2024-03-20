@@ -60,7 +60,7 @@ if ($num_rows != 0) {
                 $response['status'] = 'No enough Credit';
             }
             else if($status!='active'){
-                $response['status'] = 'User Not Active Fill All info in your proifle to start booking.';
+                $response['status'] = 'User Not Active Fill All info in your profile to start booking.';
             }
         else{
         $query3 = $mysqli->prepare('INSERT INTO reservations (flight_id, user_id , seat_number) VALUES (?, ?, ?)');
