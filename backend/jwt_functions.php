@@ -2,14 +2,14 @@
     use \Firebase\JWT\JWT;
     use Firebase\JWT\Key;
     use \Firebase\JWT\ExpiredException;
-    require_once('./vendor/autoload.php'); // 
+    require_once('../vendor/autoload.php'); // 
 
-    require_once('./config.php');
+    require_once('../config.php');
     function generateToken($user_id) {
     $secretKey  = secretKey;
     $issuedAt   = new DateTimeImmutable();
     $expire     = $issuedAt->modify('+120 minutes')->getTimestamp();      // Add 60 seconds
-    $serverName = "http://localhost/flight-system-website/";
+    $serverName = "http://localhost/flightsWebsite/flight-system-website/";
     $username   = $user_id;                                           // Retrieved from filtered POST data
 
     $data = [
@@ -34,7 +34,7 @@
         try{
         $token = JWT::decode($jwt, new Key($secretKey, 'HS512'));
         $now = new DateTimeImmutable();
-        $serverName = "http://localhost/flight-system-website/";
+        $serverName = "http://localhost/flightsWebsite/flight-system-website/";
         $response["message"]="success";
         $response["user"]= $token->userName;
         } catch (ExpiredException $e) {
