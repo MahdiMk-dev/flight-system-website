@@ -13,7 +13,7 @@ const flightStatus = document.getElementById('flight-Status');
         // Function to load user details onto the page
     const loadUserInfoContent = (container, userId) => {
             // Fetch flights data using the user ID
-    fetch('http://localhost/flight-system-website/backend/profile-page/view-info.php?user_id='+userId
+    fetch('http://localhost/flightsWebsite/flight-system-website/backend/profile-page/view-info.php?user_id='+userId
     )
         .then(response => response.json())
         .then(data => {
@@ -107,7 +107,7 @@ const flightStatus = document.getElementById('flight-Status');
         formData.append('phone', updatedPhone);
         formData.append('passport', updatedPassport);
         formData.append('user_id', userId);
-            fetch('http://localhost/flight-system-website/backend/profile-page/edit-contacts-info.php?user_id'+userId, {
+            fetch('http://localhost/flightsWebsite/flight-system-website/backend/profile-page/edit-contacts-info.php?user_id'+userId, {
             method: 'POST',
             body: formData
             })
@@ -140,7 +140,7 @@ const flightStatus = document.getElementById('flight-Status');
         let amount = document.getElementById("amount").value;
     
         const jwtToken = localStorage.getItem('jwtToken');
-       fetch('http://localhost/flight-system-website/backend/profile-page/request_coins.php?amount='+amount, {
+       fetch('http://localhost/flightsWebsite/flight-system-website/backend/profile-page/request_coins.php?amount='+amount, {
         method: 'GET',
         mode: 'cors', // Ensure CORS mode
         headers: {
@@ -157,7 +157,7 @@ const flightStatus = document.getElementById('flight-Status');
                 alert("Amount requested successfully");
                 document.getElementById("coinRequestForm").reset(); // Reset the form
             } else {
-                window.location.href="http://localhost/flight-system-website/frontend/login.html"
+                window.location.href="http://localhost/flightsWebsite/flight-system-website/frontend/login.html"
                 alert("Error: " + data.message);
             }
         })
@@ -169,7 +169,7 @@ const flightStatus = document.getElementById('flight-Status');
 
     const loadECInfoContent = (container, userId) => {
             // Fetch flights data using the user ID
-    fetch('http://localhost/flight-system-website/backend/profile-page/view-emergency-contacts.php?user_id='+userId
+    fetch('http://localhost/flightsWebsite/flight-system-website/backend/profile-page/view-emergency-contacts.php?user_id='+userId
     )
         .then(response => response.json())
         .then(data => {
@@ -195,7 +195,7 @@ const flightStatus = document.getElementById('flight-Status');
         
     };
            const loadCoinsRequest = (container, userId) => {
-        fetch('http://localhost/flight-system-website/backend/profile-page/list_coin_request.php?user_id='+userId
+        fetch('http://localhost/flightsWebsite/flight-system-website/backend/profile-page/list_coin_request.php?user_id='+userId
     )
         .then(response => response.json())
         .then(data => {
@@ -235,7 +235,7 @@ const flightStatus = document.getElementById('flight-Status');
 
 
        const loadUpcomingBookingsContent = (container, userId) => {
-        fetch('http://localhost/flight-system-website/backend/profile-page/view-flights.php?user_id='+userId
+        fetch('http://localhost/flightsWebsite/flight-system-website/backend/profile-page/view-flights.php?user_id='+userId
     )
         .then(response => response.json())
         .then(data => {
@@ -263,7 +263,7 @@ const flightStatus = document.getElementById('flight-Status');
         let formData = new FormData();
         formData.append('booking_id', buttonId);
         formData.append('user_id', userId);
-            fetch('http://localhost/flight-system-website/backend/profile-page/cancel_reservation.php', {
+            fetch('http://localhost/flightsWebsite/flight-system-website/backend/profile-page/cancel_reservation.php', {
             method: 'POST',
             body: formData
             })
@@ -294,7 +294,7 @@ const flightStatus = document.getElementById('flight-Status');
 
     };
         const loadBookingsHistoryContent = (container, userId) => {
-                fetch('http://localhost/flight-system-website/backend/profile-page/view-history-flights.php?user_id='+userId
+                fetch('http://localhost/flightsWebsite/flight-system-website/backend/profile-page/view-history-flights.php?user_id='+userId
     )
         .then(response => response.json())
         .then(data => {
@@ -323,7 +323,7 @@ const flightStatus = document.getElementById('flight-Status');
 
     const jwtToken = localStorage.getItem('jwtToken');
     // Fetch flights data using the user ID
-    fetch('http://localhost/flight-system-website/backend/get_user.php', {headers: {
+    fetch('http://localhost/flightsWebsite/flight-system-website/backend/get_user.php', {headers: {
               'Authorization': `Bearer ${jwtToken}`
             }
     })
@@ -351,17 +351,5 @@ const flightStatus = document.getElementById('flight-Status');
             }else{
                     alert(data.status)
                 }
-                })
-
-
-                
-            
+                })     
 });
-
-
-
-
-
-   
-
-
