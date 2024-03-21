@@ -170,7 +170,6 @@ fetch('http://localhost/flight-system-website/backend/profile-page/balance.php?u
 
     document.getElementById("request").addEventListener("click", function(){
         // Get the amount from the input field
-        alert("hi")
         let amount = document.getElementById("amount").value;
         var formData = new FormData();
         formData.append('amount', amount);
@@ -187,8 +186,7 @@ fetch('http://localhost/flight-system-website/backend/profile-page/balance.php?u
         .then(response => response.json())
         .then(data => {
             // Handle response data here
-            console.log(data);
-            alert(data)
+            //alert(data)
             if (data.status == "success") {
                 alert("Amount requested successfully");
                 location.reload();
