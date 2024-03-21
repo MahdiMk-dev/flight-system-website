@@ -119,37 +119,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     card.innerHTML="No Ads"
                     adssection.appendChild(card);
                 }
-
-
-        const todayflight = document.getElementById('table');
-            if (data.status_today === 'success') {
-                console.log("success")
-                const today = data.today;
-
-                
-                today.forEach((t, index) => {
-                      let row = todayflight.insertRow(-1); // Insert at the last position
-
-                      let cell1 = row.insertCell(0);
-                      let cell2 = row.insertCell(1);
-                      let cell3 = row.insertCell(2);
-                      let cell4 = row.insertCell(3);
-                      let cell5 = row.insertCell(4);
-                      let cell6 = row.insertCell(5);
-                      let cell7 = row.insertCell(6);
-
-                      cell1.innerHTML = t.id;
-                      cell2.innerHTML = t.status;
-                      cell3.innerHTML = t.departure_date;
-                      cell4.innerHTML = t.departure_airport_id;
-                      cell5.innerHTML = t.arrival_date;
-                      cell6.innerHTML = t.arrival_airport_id;
-                      cell7.innerHTML = t.passengers;
-
-                })
-                }else{
-                   
-                }
                 })
 
 
@@ -232,9 +201,9 @@ function apply_filter(filter_condition){
 
                 })
                 }else{
-                    const cardnew = document.createElement('section');
-                    cardnew.innerHTML="<h2>Ads Section</h2><h4>No Flights</h4>"
-                    flightDetailsDiv.appendChild(cardnew);
+                    const card = document.createElement('section');
+                    card.innerHTML="No Flights"
+                    flightDetailsDiv.appendChild(card);
                 }
                 if(data.ads_status=='success'){
                 ads=data.ads;
@@ -319,15 +288,6 @@ fromDateValue.addEventListener("change", function(event) {
 let filters=input_values();
 console.log(filters)
 apply_filter(filters)
-});
-document.getElementById("logout").addEventListener("click", function(event) {
-  event.preventDefault(); // Prevent the default link behavior
-
-  // Remove data from local storage
-  localStorage.removeItem("jwtToken");
-
-  // Redirect to login page or perform other actions
-  window.location.href = "./login.html"; // Change the URL as needed
 });
 
 });

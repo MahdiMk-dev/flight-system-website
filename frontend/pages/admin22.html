@@ -71,7 +71,7 @@
       <div class="flights-table">
         <div class="flex space-between">
           <h2>Flights</h2>
-          <button class="add-btn" id="add-btn"><i class="uil uil-plus"></i></button>
+          <button class="add-btn"><i class="uil uil-plus"></i></button>
         </div>
         <table>
           <thead>
@@ -87,8 +87,8 @@
               <th></th>
             </tr>
           </thead>
-          <tbody id="flights-rows">
-            <!--<tr>
+          <tbody>
+            <tr>
               <td>1</td>
               <td>2024-04-01 08:00</td>
               <td>2024-04-01 10:00</td>
@@ -101,103 +101,60 @@
                 <button class="btn edit-btn"><i class="uil uil-edit"></i></button>
                 <button class="btn cancel-btn"><i class="uil uil-trash-alt"></i></button>
               </td>
-            </tr>-->
+            </tr>
           </tbody>
         </table>
       </div>
 
-      <div class="modal" id="popup">
-        <div class="modal-content flex column center">
-          <div class="flex">
-            <h2>Add Flight</h2>
-            <span class="close" id="close">x</span>
-          </div>
-          
-          <form id="flight-form">
-            <label>ID:</label>
-            <input type="number" id="flightId" readonly>
-
-            <label>Price:</label>
-            <input type="number" id="price" required><br>
-
-            <label>From:</label>
-            <input type="number" id="departure-airport" required><br>
-
-            <label>To:</label>
-            <input type="number" id="arrival-airport" required><br>
-
-            <label>Departure Date:</label>
-            <input type="date" id="departure-date" required><br>
-
-            <label>Departure Time:</label>
-            <input type="time" id="departure-time" required><br>
-
-            <label>Arrival Date:</label>
-            <input type="date" id="arrival-date" required><br>
-
-            <label>Arrival Time:</label>
-            <input type="time" id="arrival-time" required><br>
-
-            <label>Airplane:</label>
-            <input type="text" id="airplane" required><br>
-
-            <label>Status:</label>
-            <input type="text" id="status" required><br>
-
-            <button type="submit">Submit</button>
-          </form>
-        </div>
+      <div class="flights-table">
+        <h2>Bookings</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Booking Id</th>
+              <th>Seat #</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Airport</th>
+              <th>Payment Status</th>
+              <th>Passenger name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>122</td>
+              <td>Beirut</td>
+              <td>London</td>
+              <td>Rafic El Harriri</td>
+              <td>Pending</td>
+              <td>John</td>
+              <td>john@gmail.com</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>122</td>
+              <td>Beirut</td>
+              <td>London</td>
+              <td>Rafic El Harriri</td>
+              <td>Pending</td>
+              <td>John</td>
+              <td>john@gmail.com</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>122</td>
+              <td>Beirut</td>
+              <td>London</td>
+              <td>Rafic El Harriri</td>
+              <td>Pending</td>
+              <td>John</td>
+              <td>john@gmail.com</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-
-    <div class="flights-table">
-      <h2>Bookings</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Booking Id</th>
-            <th>Seat #</th>
-            <th>From</th>
-            <th>To</th>
-            <th>Airport</th>
-            <th>Payment Status</th>
-            <th>Passenger name</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody id="booking-rows">
-          <!--<tr>
-            <td>1</td>
-            <td>122</td>
-            <td>Beirut</td>
-            <td>London</td>
-            <td>Rafic El Harriri</td>
-            <td>Pending</td>
-            <td>John</td>
-            <td>john@gmail.com</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>122</td>
-            <td>Beirut</td>
-            <td>London</td>
-            <td>Rafic El Harriri</td>
-            <td>Pending</td>
-            <td>John</td>
-            <td>john@gmail.com</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>122</td>
-            <td>Beirut</td>
-            <td>London</td>
-            <td>Rafic El Harriri</td>
-            <td>Pending</td>
-            <td>John</td>
-            <td>john@gmail.com</td>
-          </tr>-->
-        </tbody>
-      </table>
-    </div>
 
       <div class="flights-table">
         <h2>Coins Request</h2>
@@ -213,15 +170,20 @@
             </tr>
           </thead>
           <tbody>
-
+            <tr>
+              <td>1</td>
+              <td>John</td>
+              <td>john@gmail.com</td>
+              <td>3</td>
+              <td>2000</td>
+              
+            </tr>
           </tbody>
         </table>
-      </div>
     </div>
   </div>
   <script src="../scripts/admin-panel/revenue.js"></script>
   <script src="../scripts/admin-panel/user.js"></script>
   <script src="../scripts/admin-panel/flights.js"></script>
-  <script src="../scripts/admin-panel/add-edit-flight.js"></script>
 </body>
 </html>

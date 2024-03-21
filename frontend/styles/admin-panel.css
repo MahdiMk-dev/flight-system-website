@@ -10,7 +10,7 @@
 
 body {
     font-family: "Poppins", sans-serif;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     font-size: 16px;
     background-color: white; 
@@ -30,7 +30,7 @@ body {
 .panel-right {
     flex-grow: 1;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 15px;
 }
 
 a {
@@ -157,4 +157,33 @@ td {
 
 .edit-btn:hover {
     background-color: #218838;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #5f6c8f;
+    width: 80%;
+    max-width: 600px;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover {
+    cursor: pointer;
 }

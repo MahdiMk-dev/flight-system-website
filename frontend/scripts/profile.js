@@ -1,6 +1,14 @@
 
 
-    // Get references to letious elements in the DOM
+    document.getElementById("logout").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default link behavior
+      
+        // Remove token from local storage
+        localStorage.removeItem("jwtToken");
+      
+        // Redirect to login page or perform other actions
+        window.location.href = "./login.html"; // Change the URL as needed
+      });
 const bookingID = document.getElementById('booking-ID');
 const bookingDate = document.getElementById('booking-Date');
 const bookingStatus = document.getElementById('booking-Status');
@@ -142,7 +150,7 @@ fetch('http://localhost/flight-system-website/backend/profile-page/balance.php?u
             // Handle the response
             if (data.status == 'succcess') {
                 alert("updated successfuly")
-                 //   location.reload();
+                    location.reload();
             }
             else{
                 alert(data.status)
@@ -178,12 +186,12 @@ fetch('http://localhost/flight-system-website/backend/profile-page/balance.php?u
     )
         .then(response => response.json())
         .then(data => {
-            alert("hi")
             // Handle response data here
             console.log(data);
             alert(data)
             if (data.status == "success") {
                 alert("Amount requested successfully");
+                location.reload();
                 //document.getElementById("coinRequestForm").reset(); // Reset the form
             } else {
                 window.location.href="http://localhost/flight-system-website/frontend/login.html"
@@ -302,7 +310,7 @@ fetch('http://localhost/flight-system-website/backend/profile-page/balance.php?u
             if (data.status === 'success') {
                 console.log("success")
                 console.log(data)
-              //   location.reload();
+            location.reload();
             }
             else
             {

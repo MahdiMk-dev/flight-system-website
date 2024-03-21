@@ -9,6 +9,13 @@ body{
     background: linear-gradient(to left, #4481EB, #D2EBF5);
     height: 100vh;
 }
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 8px;
+}
 nav{
     height: 4rem;
     width: 100vw;
