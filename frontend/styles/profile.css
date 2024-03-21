@@ -135,3 +135,31 @@ button:hover {
   .footer .social > * {
     margin-right: 30px;
   }
+  .form-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9;
+}
+
+/* Popup form */
+.form-container {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  width: 300px;
+}
+
+/* Full-width buttons */
+.btn {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+/* Cancel button */
+.cancel {
+  background-color: #f44336;
+}

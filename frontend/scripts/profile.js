@@ -349,9 +349,53 @@ fetch('http://localhost/flight-system-website/backend/profile-page/balance.php?u
                         if (flight.status == "completed") {
                             bookingContainer.innerHTML += `
                                 <button class="review-btn" id="${flight.id}">Review</button>`;
-                        }
+                            }
                         container.appendChild(bookingContainer);
                     });
+                                var popupForm = document.getElementById("popupForm");
+                                const reviewButton = container.querySelector('.review-btn');
+                                reviewButton.addEventListener('click', () => {
+                                    const buttonId = event.target.id;
+                                    document.getElementById("flight").value=buttonId
+                                    popupForm.style.display = "block";
+
+                                // When the close button in the form is clicked, hide the form
+                                document.getElementById("closeForm").addEventListener("click", function() {
+                                  popupForm.style.display = "none";
+                                });
+                        })
+
+document.getElementById("popupForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent the default form submission
+  
+  // Get form data
+  rate= document.getElementById('rate').value
+  review= document.getElementById('review').value
+  console.log(rate)
+    let formDataa = new FormData();
+   formDataa.append('user_id', userId);
+   var buttonId = event.target.id;
+   formDataa.append('booking_id', document.getElementById("flight").value);
+   formDataa.append('rating', rate);
+   formDataa.append('review', review);
+
+  
+  // Perform fetch request
+  fetch('http://localhost/flight-system-website/backend/profile-page/add-review.php', {
+    method: 'POST',
+    body: formDataa
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+     popupForm.style.display = "none";
+    // You can add code here to handle the response
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    // You can add code here to handle errors
+  });
+})
                 } else {
                     container.innerHTML = '<h2>Bookings History</h2><h4>' + data.status + '</h4>';
                 }
@@ -377,7 +421,6 @@ fetch('http://localhost/flight-system-website/backend/profile-page/balance.php?u
                 const flightDetailsDiv = document.getElementById('card');
                 const CoinsConrtainer=document.getElementById('coins');
                 loadUserInfoContent(passengerDetailsContainer, user_id);
-                console.log("log")
                 loadECInfoContent(emergencyContactContainer, user_id);
                 loadUpcomingBookingsContent(upcomingBookingsContainer, user_id);
                 loadBookingsHistoryContent(bookingsHistoryContainer, user_id);

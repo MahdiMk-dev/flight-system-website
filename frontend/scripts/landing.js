@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-     // Get input values
 
 
-    // Fetch flights data using the user ID
         fetch('http://localhost/flight-system-website/backend/get_airports.php', {
         method: 'GET',
         mode: 'cors', // Ensure CORS mode
