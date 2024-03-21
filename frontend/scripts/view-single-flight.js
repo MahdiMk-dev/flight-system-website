@@ -10,12 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Create a URLSearchParams object with the URL
-    var params = getUrlParameters();
+    let  params = getUrlParameters();
 
     // Get a specific parameter value by name
-    var flight_id = params['flight_id'];
+    let  flight_id = params['flight_id'];
     const jwtToken = localStorage.getItem('jwtToken');
-    console.log(flight_id)
     // Fetch flights data using the user ID
     fetch('http://localhost/flight-system-website/backend/single-flight-page.php?flight_id='+flight_id,{
         headers: {
