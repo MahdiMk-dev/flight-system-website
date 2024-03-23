@@ -16,7 +16,6 @@ const bookingStatus = document.getElementById('booking-Status');
 const flightID = document.getElementById('flight-ID');
 const flightStatus = document.getElementById('flight-Status');
 const getBalance = (userId) => {
-    // Fetch flights data using the user ID
 
 
 fetch('http://localhost/flight-system-website/backend/profile-page/balance.php?user_id='+userId
@@ -61,7 +60,6 @@ fetch('http://localhost/flight-system-website/backend/profile-page/balance.php?u
                 
 
             `;
-            console.log("hello World2")
 
                 const editUserBtn = document.createElement('button');
                 editUserBtn.textContent = 'Edit'; 
@@ -72,7 +70,6 @@ fetch('http://localhost/flight-system-website/backend/profile-page/balance.php?u
                 container.appendChild(editUserBtn);
                 container.appendChild(saveUserDetailsBtn);
                  editUserBtn.addEventListener("click", (e) => {
-        console.log("Edit button clicked");
 
             // Update the user details form fields with the current values
             const nameSpan = document.getElementById('name');
@@ -146,7 +143,6 @@ fetch('http://localhost/flight-system-website/backend/profile-page/balance.php?u
             })
         .then(response => response.json()) 
         .then(data => {
-            console.log(data);
             // Handle the response
             if (data.status == 'succcess') {
                 alert("updated successfuly")

@@ -329,3 +329,15 @@ document.getElementById("logout").addEventListener("click", function(event) {
 });
 
 });
+
+
+const test =async (f) => {
+    f();
+    
+}   
+
+
+const test1 = () => {
+   
+}
+test(test1)
